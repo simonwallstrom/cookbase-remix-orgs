@@ -10,10 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Recipe {
-  id        String   @id @default(uuid())
+model Organization {
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  title     String
-  content   String
+  name      String
+  user      User[]
+}
+
+model User {
+  id             String       @id @default(cuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  email          String       @unique
+  password       Password?
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+}
+
+model Password {
+  hash   String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
 }
