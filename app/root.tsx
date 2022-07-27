@@ -6,12 +6,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
 } from "@remix-run/react";
 import styles from "./tailwind.css";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Cookbase",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -29,6 +30,26 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+      </body>
+    </html>
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+  return (
+    <html className="h-full min-h-full bg-zinc-100 dark:bg-zinc-900" lang="en">
+      <head>
+        <Meta />
+        <Links />
+        <title>Cookbase</title>
+      </head>
+      <body className="flex min-h-full flex-col text-sm text-gray-700 dark:text-gray-300">
+        <div className="flex flex-1 flex-col items-center justify-center gap-4">
+          <h1>{caught.status}</h1>
+          <p>{caught.data}</p>
+        </div>
+        <Scripts />
       </body>
     </html>
   );

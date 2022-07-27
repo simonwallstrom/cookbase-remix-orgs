@@ -1,23 +1,35 @@
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { Form, Link, useActionData } from "@remix-run/react";
+import {
+  type LoaderArgs,
+  redirect,
+  json,
+  type ActionArgs,
+} from "@remix-run/node";
+import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
+import invariant from "tiny-invariant";
+import { getInviteById } from "~/models/invite.server";
+import { createUserSession, getUserId } from "~/utils/session.server";
 import * as React from "react";
-import { getUserId, createUserSession } from "~/utils/session.server";
-import { createUser, getUserByEmail } from "~/models/user.server";
 import { z } from "zod";
 import { validateAction } from "~/utils/utils";
+import { createInvitedUser, getUserByEmail } from "~/models/user.server";
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ params, request }: LoaderArgs) {
+  invariant(params.inviteId);
   const userId = await getUserId(request);
   if (userId) return redirect("/dashboard");
-  return json({});
+
+  const invite = await getInviteById(params.inviteId);
+
+  if (!invite) {
+    throw new Response("Invite link not found...", {
+      status: 404,
+    });
+  }
+  return json(invite);
 }
 
 const joinSchema = z.object({
-  account: z
-    .string({ required_error: "Account name is required" })
-    .min(1)
-    .max(50, "Account name can not be longer than 50 characters"),
+  organizationId: z.string().cuid(),
   email: z
     .string({ required_error: "Email is required" })
     .email("Invalid email address"),
@@ -37,7 +49,7 @@ export async function action({ request }: ActionArgs) {
     return json({ errors }, { status: 400 });
   }
 
-  const { account, email, password, redirectTo } = formData;
+  const { organizationId, email, password, redirectTo } = formData;
 
   const existingUser = await getUserByEmail(email);
   if (existingUser) {
@@ -53,7 +65,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const user = await createUser(account, email, password);
+  const user = await createInvitedUser(organizationId, email, password);
 
   return createUserSession({
     request,
@@ -64,15 +76,13 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function SignUp() {
+  const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
-  const accountRef = React.useRef<HTMLInputElement>(null);
   const emailRef = React.useRef<HTMLInputElement>(null);
   const passwordRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
-    if (actionData?.errors?.account) {
-      accountRef.current?.focus();
-    } else if (actionData?.errors?.email) {
+    if (actionData?.errors?.email) {
       emailRef.current?.focus();
     } else if (actionData?.errors?.password) {
       passwordRef.current?.focus();
@@ -81,33 +91,20 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4">
-      <div className="mx-auto w-full max-w-md px-8">
+      <div className="mx-auto w-full max-w-md px-8 space-y-4">
+        <h1>Join {data.organization.name}</h1>
+        <p>
+          You're invited to join {data.organization.name} on Cookbase. Signup to
+          start collaborating on recipes and meal plans.
+        </p>
         <Form method="post" className="space-y-6">
-          <div>
-            <label htmlFor="account" className="">
-              Account name
-            </label>
-            <div className="mt-1">
-              <input
-                ref={accountRef}
-                id="account"
-                required
-                name="account"
-                type="text"
-                autoFocus={true}
-                autoComplete="account"
-                aria-invalid={actionData?.errors?.account ? true : undefined}
-                aria-describedby="account-error"
-                className="w-full text-sm"
-              />
-              {actionData?.errors?.account && (
-                <div className="pt-1 text-red-700" id="account-error">
-                  {actionData.errors.account}
-                </div>
-              )}
-            </div>
-          </div>
-
+          <input
+            id="organizationId"
+            name="organizationId"
+            type="hidden"
+            defaultValue={data.organization.id}
+            className="w-full text-sm"
+          />
           <div>
             <label htmlFor="email" className="">
               Email address
