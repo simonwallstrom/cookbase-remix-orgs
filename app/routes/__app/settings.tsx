@@ -18,45 +18,50 @@ export default function Settings() {
     <div>
       <h1>Settings</h1>
       <p className="mt-2">Manage your user and family account settings.</p>
-      <hr className="my-8" />
-      <h2>User settings</h2>
-      <Form action="/logout" method="post">
+      <div className="box mt-8">
+        <h2>User settings</h2>
+        <Form action="/logout" method="post">
+          <div className="mt-2 flex gap-2">
+            <span>
+              Logged in as{" "}
+              <strong className="text-black dark:text-white">
+                {data.user?.email}
+              </strong>
+            </span>
+            <button type="submit" className="text-link">
+              Logout
+            </button>
+          </div>
+        </Form>
+      </div>
+      <div className="box mt-8">
+        <h2>Account settings</h2>
         <div className="mt-2 flex gap-2">
-          <span>
-            Logged in as{" "}
+          <div>
+            Account name:{" "}
             <strong className="text-black dark:text-white">
-              {data.user?.email}
+              {data.user?.organization.name}
             </strong>
-          </span>
-          <button type="submit" className="text-link">
-            Logout
+          </div>
+          <div>
+            <button className="text-link">Edit account name</button>
+          </div>
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h3>Members</h3>
+          <ol className="mt-2 list-disc list-inside">
+            {data.members.map((member) => (
+              <li key={member.email}>
+                {member.email}
+                {member.email == data.user?.email ? <span>(You)</span> : null}
+              </li>
+            ))}
+          </ol>
+          <button className="text-link mt-2">
+            Invite another family member
           </button>
         </div>
-      </Form>
-      <hr className="my-8" />
-      <h2>Account settings</h2>
-      <div className="mt-2 flex gap-2">
-        <div>
-          Account name:{" "}
-          <strong className="text-black dark:text-white">
-            {data.user?.organization.name}
-          </strong>
-        </div>
-        <div>
-          <button className="text-link">Edit account name</button>
-        </div>
-      </div>
-      <div className="mt-4">
-        <h3>Members</h3>
-        <ol className="mt-2 list-disc list-inside">
-          {data.members.map((member) => (
-            <li key={member.email}>
-              {member.email}
-              {member.email == data.user?.email ? <span>(You)</span> : null}
-            </li>
-          ))}
-        </ol>
-        <button className="text-link mt-2">Invite another family member</button>
       </div>
     </div>
   );

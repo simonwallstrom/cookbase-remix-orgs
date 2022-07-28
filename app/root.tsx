@@ -20,7 +20,7 @@ export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export default function App() {
   return (
-    <html className="h-full min-h-full bg-zinc-100 dark:bg-zinc-900" lang="en">
+    <html className="h-full min-h-full bg-gray-100 dark:bg-gray-900" lang="en">
       <head>
         <Meta />
         <Links />
@@ -38,7 +38,7 @@ export default function App() {
 export function CatchBoundary() {
   const caught = useCatch();
   return (
-    <html className="h-full min-h-full bg-zinc-100 dark:bg-zinc-900" lang="en">
+    <html className="h-full min-h-full bg-gray-100 dark:bg-gray-900" lang="en">
       <head>
         <Meta />
         <Links />

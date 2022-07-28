@@ -31,14 +31,14 @@
   }
 
   hr {
-    @apply border-gray-900 dark:border-zinc-700;
+    @apply border-gray-900 dark:border-gray-700;
   }
 
   input[type="text"],
   input[type="password"],
   input[type="number"],
   input[type="email"] {
-    @apply border-black text-sm dark:border-zinc-700 shadow-[2px_2px_0_0px_#000];
+    @apply border-black text-sm dark:border-gray-700 shadow-flat;
   }
 }
 
@@ -47,6 +47,10 @@
    - Prefix all component styles with cb-(cookbase)
 ---------------------------------------------------------------------------- */
 @layer components {
+  .box {
+    @apply bg-white px-8 py-7 border border-black shadow-flat;
+  }
+
   .text-link {
     @apply text-blue-600 underline-offset-2 hover:underline dark:text-blue-400;
   }
