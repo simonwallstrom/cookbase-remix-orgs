@@ -10,9 +10,20 @@
   h1,
   h2,
   h3,
-  h4,
-  h5 {
-    @apply font-medium tracking-tight text-gray-900 dark:text-gray-100;
+  h4 {
+    @apply font-medium text-gray-900 dark:text-gray-100;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-lg;
+  }
+
+  h3 {
+    @apply text-base;
   }
 
   strong {
@@ -23,11 +34,11 @@
     @apply border-gray-900 dark:border-zinc-700;
   }
 
-  input[type='text'],
-  input[type='password'],
-  input[type='number'],
-  input[type='email'] {
-    @apply border-black text-sm dark:border-zinc-700 dark:bg-black dark:bg-opacity-10;
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  input[type="email"] {
+    @apply border-black text-sm dark:border-zinc-700 shadow-[2px_2px_0_0px_#000];
   }
 }
 
