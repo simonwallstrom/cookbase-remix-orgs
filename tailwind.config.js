@@ -6,6 +6,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        zinc: {
+          950: "#131316",
+        },
         gray: colors.zinc,
       },
       boxShadow: {

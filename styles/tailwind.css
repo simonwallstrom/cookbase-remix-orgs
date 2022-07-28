@@ -31,7 +31,7 @@
   }
 
   hr {
-    @apply border-gray-900 dark:border-gray-700;
+    @apply border-gray-900 dark:border-gray-800;
   }
 
   input[type="text"],
@@ -48,7 +48,7 @@
 ---------------------------------------------------------------------------- */
 @layer components {
   .box {
-    @apply bg-white px-8 py-7 border border-black shadow-flat;
+    @apply bg-white px-8 py-7 border border-black dark:border-gray-800 shadow-flat dark:bg-gray-900;
   }
 
   .text-link {
