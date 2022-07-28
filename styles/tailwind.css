@@ -34,11 +34,11 @@
     @apply border-gray-900 dark:border-gray-800;
   }
 
-  input[type="text"],
-  input[type="password"],
-  input[type="number"],
-  input[type="email"] {
-    @apply border-black text-sm dark:border-gray-700 shadow-flat;
+  input[type='text'],
+  input[type='password'],
+  input[type='number'],
+  input[type='email'] {
+    @apply border-black text-sm dark:border-gray-700 dark:bg-gray-800 dark:bg-opacity-30 max-w-md shadow-flat;
   }
 }
 
@@ -48,11 +48,11 @@
 ---------------------------------------------------------------------------- */
 @layer components {
   .box {
-    @apply bg-white px-8 py-7 border border-black dark:border-gray-800 shadow-flat dark:bg-gray-900;
+    @apply bg-white border border-black dark:border-gray-800 shadow-flat dark:bg-gray-900;
   }
 
   .text-link {
-    @apply text-blue-600 underline-offset-2 hover:underline dark:text-blue-400;
+    @apply text-pink-600 underline-offset-2 hover:underline dark:text-pink-400;
   }
 
   .text-link--danger {

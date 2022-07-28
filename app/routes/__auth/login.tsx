@@ -1,47 +1,42 @@
-import type { ActionArgs, LoaderArgs, MetaFunction } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
-import * as React from "react";
-import { createUserSession, getUserId } from "~/utils/session.server";
-import { verifyLogin } from "~/models/user.server";
-import { validateAction } from "~/utils/utils";
-import { z } from "zod";
+import type { ActionArgs, LoaderArgs, MetaFunction } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
+import { Form, Link, useActionData, useSearchParams } from '@remix-run/react'
+import * as React from 'react'
+import { createUserSession, getUserId } from '~/utils/session.server'
+import { verifyLogin } from '~/models/user.server'
+import { validateAction } from '~/utils/utils'
+import { z } from 'zod'
 
 export async function loader({ request }: LoaderArgs) {
-  const userId = await getUserId(request);
-  if (userId) return redirect("/dashboard");
-  return json({});
+  const userId = await getUserId(request)
+  if (userId) return redirect('/dashboard')
+  return json({})
 }
 
 const loginSchema = z.object({
-  email: z
-    .string({ required_error: "Email is required" })
-    .email("Invalid email address"),
-  password: z.string().min(6, "Password must be atleast 6 characters long"),
-  redirectTo: z.string().default("/dashboard"),
-});
+  email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
+  password: z.string().min(6, 'Password must be atleast 6 characters long'),
+  redirectTo: z.string().default('/dashboard'),
+})
 
-type ActionInput = z.infer<typeof loginSchema>;
+type ActionInput = z.infer<typeof loginSchema>
 
 export async function action({ request }: ActionArgs) {
   const { formData, errors } = await validateAction<ActionInput>({
     request,
     schema: loginSchema,
-  });
+  })
 
   if (errors) {
-    return json({ errors }, { status: 400 });
+    return json({ errors }, { status: 400 })
   }
 
-  const { email, password, redirectTo } = formData;
+  const { email, password, redirectTo } = formData
 
-  const user = await verifyLogin(email, password);
+  const user = await verifyLogin(email, password)
 
   if (!user) {
-    return json(
-      { errors: { email: "Invalid email or password", password: null } },
-      { status: 400 }
-    );
+    return json({ errors: { email: 'Invalid email or password', password: null } }, { status: 400 })
   }
 
   return createUserSession({
@@ -49,29 +44,29 @@ export async function action({ request }: ActionArgs) {
     userId: user.id,
     orgId: user.organizationId,
     redirectTo,
-  });
+  })
 }
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Login",
-  };
-};
+    title: 'Login',
+  }
+}
 
 export default function LoginPage() {
-  const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/dashboard";
-  const actionData = useActionData<typeof action>();
-  const emailRef = React.useRef<HTMLInputElement>(null);
-  const passwordRef = React.useRef<HTMLInputElement>(null);
+  const [searchParams] = useSearchParams()
+  const redirectTo = searchParams.get('redirectTo') || '/dashboard'
+  const actionData = useActionData<typeof action>()
+  const emailRef = React.useRef<HTMLInputElement>(null)
+  const passwordRef = React.useRef<HTMLInputElement>(null)
 
   React.useEffect(() => {
     if (actionData?.errors?.email) {
-      emailRef.current?.focus();
+      emailRef.current?.focus()
     } else if (actionData?.errors?.password) {
-      passwordRef.current?.focus();
+      passwordRef.current?.focus()
     }
-  }, [actionData]);
+  }, [actionData])
 
   return (
     <Form method="post" className="space-y-6">
@@ -126,17 +121,17 @@ export default function LoginPage() {
       <input type="hidden" name="redirectTo" value={redirectTo} />
       <button
         type="submit"
-        className="w-full border border-black bg-blue-500 py-2 px-4 font-medium text-white outline-none hover:bg-blue-600 focus-visible:border-blue-600 focus-visible:ring-1 focus-visible:ring-blue-600"
+        className="w-full border border-black bg-pink-500 py-2 px-4 font-medium text-white outline-none hover:bg-pink-600 focus-visible:border-pink-600 focus-visible:ring-1 focus-visible:ring-pink-600"
       >
         Log in
       </button>
       <div className="flex items-center justify-between">
         <div className="text-center text-sm text-gray-500">
-          Don't have an account?{" "}
+          Don't have an account?{' '}
           <Link
-            className="text-blue-500 underline"
+            className="text-pink-500 underline"
             to={{
-              pathname: "/signup",
+              pathname: '/signup',
               search: searchParams.toString(),
             }}
           >
@@ -145,5 +140,5 @@ export default function LoginPage() {
         </div>
       </div>
     </Form>
-  );
+  )
 }

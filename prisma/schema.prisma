@@ -17,6 +17,8 @@ model Organization {
   name      String
   user      User[]
   invite    Invite[]
+  recipe    Recipe[]
+  tag       Tag[]
 }
 
 model User {
@@ -41,4 +43,25 @@ model Invite {
   updatedAt      DateTime     @updatedAt
   organization   Organization @relation(fields: [organizationId], references: [id])
   organizationId String
+}
+
+model Recipe {
+  id             String       @id @default(cuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  title          String
+  content        String
+  tag            Tag[]
+}
+
+model Tag {
+  id             String       @id @default(cuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  title          String
+  recipe         Recipe[]
 }
