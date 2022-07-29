@@ -7,6 +7,15 @@
    - Global styles for HTML tag selectors
 ---------------------------------------------------------------------------- */
 @layer base {
+  @font-face {
+    font-family: 'Recursive';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+    src: url('/Recursive.woff2') format('woff2');
+  }
+
   h1,
   h2,
   h3,
@@ -52,7 +61,7 @@
   }
 
   .text-link {
-    @apply text-pink-600 underline-offset-2 hover:underline dark:text-pink-400;
+    @apply text-blue-600 underline-offset-2 hover:underline dark:text-blue-400;
   }
 
   .text-link--danger {

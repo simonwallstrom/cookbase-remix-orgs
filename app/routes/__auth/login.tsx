@@ -121,7 +121,7 @@ export default function LoginPage() {
       <input type="hidden" name="redirectTo" value={redirectTo} />
       <button
         type="submit"
-        className="w-full border border-black bg-pink-500 py-2 px-4 font-medium text-white outline-none hover:bg-pink-600 focus-visible:border-pink-600 focus-visible:ring-1 focus-visible:ring-pink-600"
+        className="w-full border border-black bg-blue-500 py-2 px-4 font-medium text-white outline-none hover:bg-blue-600 focus-visible:border-blue-600 focus-visible:ring-1 focus-visible:ring-blue-600"
       >
         Log in
       </button>
@@ -129,7 +129,7 @@ export default function LoginPage() {
         <div className="text-center text-sm text-gray-500">
           Don't have an account?{' '}
           <Link
-            className="text-pink-500 underline"
+            className="text-blue-500 underline"
             to={{
               pathname: '/signup',
               search: searchParams.toString(),
