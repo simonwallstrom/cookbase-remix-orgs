@@ -47,7 +47,7 @@
   input[type='password'],
   input[type='number'],
   input[type='email'] {
-    @apply border-black text-sm dark:border-gray-700 dark:bg-gray-800 dark:bg-opacity-30 max-w-md shadow-flat;
+    @apply border-black text-sm dark:border-gray-700 dark:bg-gray-800 dark:bg-opacity-30 max-w-md;
   }
 }
 

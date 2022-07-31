@@ -1,23 +1,29 @@
 import type { LoaderArgs } from '@remix-run/node'
-import { Form, useLoaderData } from '@remix-run/react'
-import { getRecipesByOrganizationId } from '~/models/recipe.server'
+import { Form, Link, useLoaderData, useSearchParams, useSubmit } from '@remix-run/react'
+import { getRecipeCount, getRecipesByOrganizationId } from '~/models/recipe.server'
 import { getTagsByOrganizationId } from '~/models/tag.server'
 import { requireAuth } from '~/utils/session.server'
 
 export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url)
-  const filters = url.searchParams.getAll('tag')
-  console.log({ filters })
+  const tagFilter = url.searchParams.getAll('tag')
 
   const { orgId } = await requireAuth(request)
-  const recipes = await getRecipesByOrganizationId(orgId)
+  const recipes = await getRecipesByOrganizationId(orgId, tagFilter)
+  const recipeCount = await getRecipeCount(orgId)
   const tags = await getTagsByOrganizationId(orgId)
 
-  return { recipes, tags }
+  return { recipes, recipeCount, tags }
 }
 
 export default function Recipes() {
-  const { recipes, tags } = useLoaderData<typeof loader>()
+  const { recipes, recipeCount, tags } = useLoaderData<typeof loader>()
+  const submit = useSubmit()
+  const [searchParams] = useSearchParams()
+  const tagParams = searchParams.getAll('tag')
+
+  console.log(recipeCount)
+
   return (
     <div>
       <div className="flex justify-between items-end">
@@ -25,26 +31,44 @@ export default function Recipes() {
         <button className="text-link">+ Add recipe</button>
       </div>
       <Form
-        className="flex mt-8 bg-gray-800 border border-gray-700 shadow-flat p-4 gap-4"
+        className="flex mt-8 dark:bg-gray-800 bg-white border border-gray-700 shadow-flat p-4 gap-4"
         method="get"
       >
         {tags.map((tag) => (
           <div key={tag.id} className="flex gap-2 items-center">
-            <input type="checkbox" id={tag.title} name="tag" value={tag.title} />
-            <label htmlFor={tag.title}>{tag.title} (24)</label>
+            <input
+              checked={tagParams.includes(tag.title)}
+              onChange={(e) => submit(e.currentTarget.form)}
+              type="checkbox"
+              id={tag.title}
+              name="tag"
+              value={tag.title}
+            />
+            <label htmlFor={tag.title}>
+              {tag.title} ({tag._count.recipe})
+            </label>
           </div>
         ))}
-        <button type="submit">Update</button>
       </Form>
 
       <div className="mt-6 text-gray-500">
-        Showing 8 of 39 recipes. <button className="text-link">Clear filter</button>
+        Showing 8 of {recipeCount} recipes.{' '}
+        <Link to="/recipes" className="text-link">
+          Clear filter
+        </Link>
       </div>
 
       <div className="mt-5 grid grid-cols-3 gap-8">
         {recipes.map((recipe) => (
           <div key={recipe.id} className="box p-4">
             <h4>{recipe.title}</h4>
+            <div>
+              {recipe.tag.map((tag) => (
+                <div className="text-xs text-gray-500 mt-1" key={tag.id}>
+                  {tag.title}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
