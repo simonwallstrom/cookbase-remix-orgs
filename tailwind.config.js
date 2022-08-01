@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         sans: ['Recursive', ...defaultTheme.fontFamily.sans],
       },
+      fontSize: {
+        sm: ['0.8125rem', { lineHeight: '1.25rem' }],
+      },
       colors: {
         zinc: {
           950: '#131316',
