@@ -22,13 +22,13 @@ export default function Recipes() {
   const [searchParams] = useSearchParams()
   const tagParams = searchParams.getAll('tag')
 
-  console.log(recipeCount)
-
   return (
     <div>
       <div className="flex justify-between items-end">
         <h1>Recipes</h1>
-        <button className="text-link">+ Add recipe</button>
+        <button className="bg-yellow-400 border font-medium border-black shadow-flat py-2 px-4">
+          + Add recipe
+        </button>
       </div>
       <Form
         className="flex mt-8 dark:bg-gray-800 bg-white border border-gray-700 shadow-flat p-4 gap-4"
