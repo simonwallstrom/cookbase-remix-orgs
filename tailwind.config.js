@@ -19,7 +19,9 @@ module.exports = {
         gray: colors.zinc,
       },
       boxShadow: {
+        'flat-sm': '1px 1px 0 #000',
         flat: '2px 2px 0 #000',
+        'flat-lg': '3px 3px 0 #000',
       },
     },
   },

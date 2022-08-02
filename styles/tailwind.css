@@ -57,11 +57,11 @@
 ---------------------------------------------------------------------------- */
 @layer components {
   .box {
-    @apply bg-white border border-black dark:border-gray-800 shadow-flat dark:bg-gray-900;
+    @apply bg-white border border-black dark:border-gray-700 shadow-flat dark:bg-gray-800;
   }
 
   .text-link {
-    @apply text-blue-600 underline-offset-2 hover:underline dark:text-blue-400;
+    @apply text-pink-600 underline-offset-2 hover:underline dark:text-pink-400;
   }
 
   .text-link--danger {

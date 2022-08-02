@@ -152,14 +152,14 @@ export default function SignUp() {
       </div>
       <button
         type="submit"
-        className="w-full border border-black bg-blue-500 py-2 px-4 font-medium text-white outline-none hover:bg-blue-600 focus-visible:border-blue-600 focus-visible:ring-1 focus-visible:ring-blue-600"
+        className="w-full border border-black bg-pink-500 py-2 px-4 font-medium text-white outline-none hover:bg-pink-600 focus-visible:border-pink-600 focus-visible:ring-1 focus-visible:ring-pink-600"
       >
         Create Account
       </button>
       <div className="flex items-center justify-center">
         <div className="text-center text-sm text-gray-500">
           Already have an account?{' '}
-          <Link className="text-blue-500 underline" to="/login">
+          <Link className="text-pink-500 underline" to="/login">
             Log in
           </Link>
         </div>

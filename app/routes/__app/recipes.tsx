@@ -26,7 +26,7 @@ export default function Recipes() {
     <div>
       <div className="flex justify-between items-end">
         <h1>Recipes</h1>
-        <button className="bg-yellow-400 border font-medium border-black shadow-flat py-2 px-4">
+        <button className="bg-yellow-400 border text-black font-medium border-black shadow-flat py-2 px-4">
           + Add recipe
         </button>
       </div>
@@ -39,6 +39,7 @@ export default function Recipes() {
             <input
               checked={tagParams.includes(tag.title)}
               onChange={(e) => submit(e.currentTarget.form)}
+              className="text-pink-600 focus:ring-pink-600"
               type="checkbox"
               id={tag.title}
               name="tag"

@@ -1,6 +1,23 @@
 import type { Organization, Prisma } from '@prisma/client'
 import { prisma } from '~/utils/prisma.server'
 
+function getFilters(input: string[]) {
+  let filter: Prisma.RecipeWhereInput = {}
+  if (input.length) {
+    filter = {
+      tag: {
+        some: {
+          title: {
+            in: input,
+          },
+        },
+      },
+    }
+    return filter
+  }
+  return undefined
+}
+
 export async function getRecipeCount(organizationId: Organization['id']) {
   return prisma.recipe.count({
     where: {
@@ -13,19 +30,7 @@ export async function getRecipesByOrganizationId(
   organizationId: Organization['id'],
   tagFilter: string[]
 ) {
-  let filter: Prisma.RecipeWhereInput = {}
-
-  if (tagFilter.length) {
-    filter = {
-      tag: {
-        some: {
-          title: {
-            in: tagFilter,
-          },
-        },
-      },
-    }
-  }
+  const filter = getFilters(tagFilter)
 
   return prisma.recipe.findMany({
     where: {
@@ -35,28 +40,3 @@ export async function getRecipesByOrganizationId(
     include: { tag: true },
   })
 }
-
-// export async function getRecipesByOrganizationId(
-//   organizationId: Organization['id'],
-//   filters: string[] | undefined
-// ) {
-//   let filter = undefined
-//   if (filters && filters.length) {
-//     filter = {
-//       tag: {
-//         some: {
-//           title: {
-//             in: filters,
-//           },
-//         },
-//       },
-//     }
-//   }
-//   return prisma.recipe.findMany({
-//     where: {
-//       organizationId,
-//       ...filter,
-//     },
-//     include: { tag: true },
-//   })
-// }
