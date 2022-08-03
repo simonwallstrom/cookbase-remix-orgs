@@ -18,25 +18,41 @@ function getFilters(input: string[]) {
   return undefined
 }
 
-export async function getRecipeCount(organizationId: Organization['id']) {
-  return prisma.recipe.count({
+export async function getRecipeCount(organizationId: Organization['id'], tagFilter: string[]) {
+  const filter = getFilters(tagFilter)
+
+  const totalCount = await prisma.recipe.count({
     where: {
       organizationId,
     },
   })
+
+  const filteredCount = await prisma.recipe.count({
+    where: {
+      organizationId,
+      ...filter,
+    },
+  })
+
+  return { totalCount, filteredCount }
 }
 
 export async function getRecipesByOrganizationId(
   organizationId: Organization['id'],
-  tagFilter: string[]
+  tagFilter: string[],
+  page?: number
 ) {
   const filter = getFilters(tagFilter)
+  const take = 2
+  const skip = page ? take * (page - 1) : undefined
 
   return prisma.recipe.findMany({
     where: {
       organizationId,
       ...filter,
     },
+    take: take,
+    skip: skip,
     include: { tag: true },
   })
 }

@@ -23,12 +23,12 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   return (
-    <html className="h-full min-h-full bg-gray-100 dark:bg-gray-900" lang="en">
+    <html className="h-full min-h-full bg-gray-100" lang="en">
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="flex min-h-full flex-col text-sm text-gray-700 dark:text-gray-300">
+      <body className="flex min-h-full flex-col text-sm text-black">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -41,13 +41,13 @@ export default function App() {
 export function CatchBoundary() {
   const caught = useCatch()
   return (
-    <html className="h-full min-h-full bg-gray-100 dark:bg-gray-900" lang="en">
+    <html className="h-full min-h-full bg-gray-100" lang="en">
       <head>
         <Meta />
         <Links />
         <title>Cookbase</title>
       </head>
-      <body className="flex min-h-full flex-col text-sm text-gray-700 dark:text-gray-300">
+      <body className="flex min-h-full flex-col text-sm text-gray-700">
         <div className="flex flex-1 flex-col items-center justify-center gap-4">
           <h1>{caught.status}</h1>
           <p>{caught.data}</p>

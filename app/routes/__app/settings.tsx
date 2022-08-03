@@ -24,8 +24,7 @@ export default function Settings() {
         <Form action="/logout" method="post">
           <div className="mt-2 flex justify-between">
             <span>
-              Logged in as{' '}
-              <strong className="text-black dark:text-white">{data.user?.email}</strong>
+              Logged in as <strong className="text-black">{data.user?.email}</strong>
             </span>
             <button type="submit" className="text-link">
               Logout
@@ -37,8 +36,7 @@ export default function Settings() {
         <h2>Account settings</h2>
         <div className="mt-2 flex justify-between">
           <div>
-            Account name:{' '}
-            <strong className="text-black dark:text-white">{data.user?.organization.name}</strong>
+            Account name: <strong className="text-black">{data.user?.organization.name}</strong>
           </div>
           <div>
             <button className="text-link">Edit account name</button>

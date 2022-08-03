@@ -16,8 +16,8 @@ function CustomNavLink({ to, label }: { to: string; label: string }) {
   return (
     <NavLink
       className={({ isActive }) =>
-        'font-medium hover:text-pink-600 dark:hover:text-pink-400 ' +
-        (isActive ? 'text-pink-600 hover:cursor-default dark:text-pink-400' : undefined)
+        'font-medium hover:text-pink-600 ' +
+        (isActive ? 'text-pink-600 hover:cursor-default' : undefined)
       }
       to={to}
     >
@@ -28,7 +28,7 @@ function CustomNavLink({ to, label }: { to: string; label: string }) {
           {isActive ? (
             <motion.div
               transition={{ duration: '0.2' }}
-              className="h-0.5 w-full bg-pink-500"
+              className="h-0.5 w-full bg-pink-500 rounded-full"
               layoutId="underline"
             ></motion.div>
           ) : null}

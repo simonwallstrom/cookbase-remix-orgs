@@ -20,7 +20,7 @@
   h2,
   h3,
   h4 {
-    @apply font-medium text-gray-900 dark:text-gray-100;
+    @apply font-medium text-gray-900;
   }
 
   h1 {
@@ -40,14 +40,14 @@
   }
 
   hr {
-    @apply border-gray-900 dark:border-gray-800;
+    @apply border-gray-900;
   }
 
   input[type='text'],
   input[type='password'],
   input[type='number'],
   input[type='email'] {
-    @apply border-black text-sm dark:border-gray-700 dark:bg-gray-800 dark:bg-opacity-30 max-w-md;
+    @apply border-black text-sm max-w-md;
   }
 }
 
@@ -57,15 +57,15 @@
 ---------------------------------------------------------------------------- */
 @layer components {
   .box {
-    @apply bg-white border border-black dark:border-gray-700 shadow-flat dark:bg-gray-800;
+    @apply bg-white border border-black shadow-flat rounded-lg;
   }
 
   .text-link {
-    @apply text-pink-600 underline-offset-2 hover:underline dark:text-pink-400;
+    @apply text-pink-600 underline-offset-2 hover:underline;
   }
 
   .text-link--danger {
-    @apply text-red-600 dark:text-red-400;
+    @apply text-red-600;
   }
 }
 
