@@ -1,6 +1,5 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Form, useLoaderData, useSearchParams, useSubmit } from '@remix-run/react'
-import { z } from 'zod'
 import Pagination from '~/components/Pagination'
 import { getRecipeCount, getRecipesByOrganizationId } from '~/models/recipe.server'
 import { getTagsByOrganizationId } from '~/models/tag.server'
@@ -12,11 +11,10 @@ export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url)
   const tagFilter = url.searchParams.getAll('tag')
   const pageFilter = url.searchParams.get('page')
-  const page = pageFilter ? parseInt(pageFilter) : undefined
-  const pageSchema = z.number().nonnegative()
-  const parsedPage = pageSchema.parse(page)
 
-  const recipes = await getRecipesByOrganizationId(orgId, tagFilter, parsedPage)
+  const page = pageFilter ? parseInt(pageFilter) : undefined
+
+  const recipes = await getRecipesByOrganizationId(orgId, tagFilter, page)
   const { totalCount, filteredCount } = await getRecipeCount(orgId, tagFilter)
   const tags = await getTagsByOrganizationId(orgId)
 
@@ -58,17 +56,6 @@ export default function Recipes() {
           </div>
         ))}
       </Form>
-
-      {/* <div className="h-14 flex items-center">
-        {tagParams.length ? (
-          <div className="text-gray-500">
-            {filteredCount} of {totalCount} recipes matched your filter.{' '}
-            <Link to="/recipes" className="text-link">
-              Clear filter
-            </Link>
-          </div>
-        ) : null}
-      </div> */}
 
       <div className="grid mt-8 grid-cols-3 gap-8">
         {recipes.map((recipe) => (

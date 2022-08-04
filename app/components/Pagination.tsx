@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react'
+import { Link, useSearchParams } from '@remix-run/react'
 
 export default function Pagination({
   totalCount,
@@ -9,18 +9,28 @@ export default function Pagination({
 }) {
   const take = 2
   const totalPages = totalCount / take
-  const showingTo = currentPage * take
-  const showingFrom = showingTo - take + 1
 
-  console.log(showingFrom, showingTo)
+  let [params] = useSearchParams()
+  params.delete('page')
+  let query = params.toString()
+  let baseUrl = query ? `?${query}&page=` : '?page='
 
   return (
-    <div className="flex items-center justify-center gap-4 mt-8">
-      {currentPage > 1 ? <Link to={`/recipes?page=${currentPage - 1}`}>Previous</Link> : null}
+    <div className="flex items-center justify-between gap-4 mt-8">
       <div>
-        Showing {showingFrom}-{showingTo} of {totalCount} recipes
+        {currentPage > 1 ? (
+          <Link prefetch="intent" to={`${baseUrl}${currentPage - 1}`}>
+            ← Previous page
+          </Link>
+        ) : null}
       </div>
-      {currentPage < totalPages ? <Link to={`/recipes?page=${currentPage + 1}`}>Next</Link> : null}
+      <div>
+        {currentPage < totalPages ? (
+          <Link prefetch="intent" to={`${baseUrl}${currentPage + 1}`}>
+            Next page →
+          </Link>
+        ) : null}
+      </div>
     </div>
   )
 }
