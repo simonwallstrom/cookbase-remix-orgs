@@ -1,15 +1,15 @@
-import type { LoaderArgs } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
-import { getUserById } from "~/models/user.server";
-import { requireAuth } from "~/utils/session.server";
+import type { LoaderArgs } from '@remix-run/node'
+import { Form, useLoaderData } from '@remix-run/react'
+import { getUserById } from '~/models/user.server'
+import { requireAuth } from '~/utils/session.server'
 
 export async function loader({ request }: LoaderArgs) {
-  const { userId } = await requireAuth(request);
-  return await getUserById(userId);
+  const { userId } = await requireAuth(request)
+  return await getUserById(userId)
 }
 
 export default function Dashboard() {
-  const data = useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof loader>()
   return (
     <div>
       <h1 className="mb-2 text-2xl">Dashboard</h1>
@@ -24,5 +24,5 @@ export default function Dashboard() {
         </button>
       </Form>
     </div>
-  );
+  )
 }

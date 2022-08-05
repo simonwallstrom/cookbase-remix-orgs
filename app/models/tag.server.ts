@@ -7,7 +7,7 @@ export async function getTagsByOrganizationId(organizationId: Organization['id']
     include: {
       _count: {
         select: {
-          recipe: true,
+          recipes: true,
         },
       },
     },

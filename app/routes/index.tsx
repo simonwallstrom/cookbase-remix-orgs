@@ -50,12 +50,12 @@ export default function Index() {
             </h2>
             {!user ? (
               <div className="flex flex-col items-center justify-center space-y-5">
-                <button className="bg-pink-300 hover:bg-pink-400 transition-all active:shadow-flat-sm w-full border text-black font-medium border-black shadow-flat py-3 px-4 rounded-lg">
+                <button className="w-full rounded-lg border border-black bg-pink-300 py-3 px-4 font-medium text-black shadow-flat transition-all hover:bg-pink-400 active:shadow-flat-sm">
                   <span>Signup to get started</span>
                 </button>
                 <Link
                   to="/login"
-                  className="bg-yellow-300 hover:bg-yellow-400 transition-all active:shadow-flat-sm w-full border text-black font-medium border-black shadow-flat py-3 px-4 rounded-lg"
+                  className="w-full rounded-lg border border-black bg-yellow-300 py-3 px-4 font-medium text-black shadow-flat transition-all hover:bg-yellow-400 active:shadow-flat-sm"
                 >
                   <span>Login to continue</span>
                 </Link>
@@ -64,7 +64,7 @@ export default function Index() {
               <div className="flex">
                 <Link
                   to="/dashboard"
-                  className="bg-yellow-300 hover:bg-yellow-400 transition-all active:shadow-flat-sm w-full border text-black font-medium border-black shadow-flat py-3 px-4 rounded-lg"
+                  className="w-full rounded-lg border border-black bg-yellow-300 py-3 px-4 font-medium text-black shadow-flat transition-all hover:bg-yellow-400 active:shadow-flat-sm"
                 >
                   <span>Open dashboard</span>
                 </Link>
@@ -74,7 +74,7 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="relative hidden flex-1 items-center justify-center border-l-2 border-black overflow-hidden bg-pink-300 md:block">
+      <div className="relative hidden flex-1 items-center justify-center overflow-hidden border-l-2 border-black bg-pink-300 md:block">
         <div className="w-full ">
           <div className="mt-10">
             <div
@@ -84,7 +84,7 @@ export default function Index() {
               <div className="absolute top-1/2 -translate-y-1/2 rotate-12 sm:translate-x-8 lg:translate-x-6">
                 <div className="flex items-center space-x-6 lg:space-x-12">
                   <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-12">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -95,7 +95,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -108,7 +108,7 @@ export default function Index() {
                     </div>
                   </div>
                   <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-12">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -119,7 +119,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -130,7 +130,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -143,7 +143,7 @@ export default function Index() {
                     </div>
                   </div>
                   <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -154,7 +154,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -167,7 +167,7 @@ export default function Index() {
                     </div>
                   </div>
                   <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg shadow-flat border border-black">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"

@@ -9,12 +9,12 @@ module.exports = {
         sans: ['Recursive', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
-        sm: ['0.8125rem', { lineHeight: '1.25rem' }],
+        sm: ['0.875rem', { lineHeight: '1.25rem' }],
       },
       boxShadow: {
         'flat-sm': '1px 1px 0 #000',
         flat: '2px 2px 0 #000',
-        'flat-lg': '3px 3px 0 #000',
+        'flat-lg': '4px 4px 0 #000',
       },
     },
   },

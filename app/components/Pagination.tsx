@@ -7,7 +7,7 @@ export default function Pagination({
   currentPage: number
   totalCount: number
 }) {
-  const take = 2
+  const take = 100
   const totalPages = totalCount / take
 
   let [params] = useSearchParams()
@@ -16,7 +16,7 @@ export default function Pagination({
   let baseUrl = query ? `?${query}&page=` : '?page='
 
   return (
-    <div className="flex items-center justify-between gap-4 mt-8">
+    <div className="mt-8 flex items-center justify-between gap-4">
       <div>
         {currentPage > 1 ? (
           <Link prefetch="intent" to={`${baseUrl}${currentPage - 1}`}>

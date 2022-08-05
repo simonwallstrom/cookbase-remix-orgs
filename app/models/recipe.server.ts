@@ -1,11 +1,11 @@
-import type { Organization, Prisma } from '@prisma/client'
+import type { Organization, Prisma, Recipe } from '@prisma/client'
 import { prisma } from '~/utils/prisma.server'
 
-function getFilters(input: string[]) {
+function getRecipeFilters(input: string[]) {
   let filter: Prisma.RecipeWhereInput = {}
   if (input.length) {
     filter = {
-      tag: {
+      tags: {
         some: {
           title: {
             in: input,
@@ -19,7 +19,7 @@ function getFilters(input: string[]) {
 }
 
 export async function getRecipeCount(organizationId: Organization['id'], tagFilter: string[]) {
-  const filter = getFilters(tagFilter)
+  const filter = getRecipeFilters(tagFilter)
 
   const totalCount = await prisma.recipe.count({
     where: {
@@ -37,13 +37,13 @@ export async function getRecipeCount(organizationId: Organization['id'], tagFilt
   return { totalCount, filteredCount }
 }
 
-export async function getRecipesByOrganizationId(
+export async function getRecipes(
   organizationId: Organization['id'],
   tagFilter: string[],
   page?: number
 ) {
-  const filter = getFilters(tagFilter)
-  const take = 2
+  const filter = getRecipeFilters(tagFilter)
+  const take = 100
   const skip = page ? take * (page - 1) : undefined
 
   return prisma.recipe.findMany({
@@ -53,6 +53,19 @@ export async function getRecipesByOrganizationId(
     },
     take: take,
     skip: skip,
-    include: { tag: true },
+    include: { tags: true },
+  })
+}
+
+export async function getRecipe({
+  organizationId,
+  id,
+}: {
+  organizationId: Organization['id']
+  id: Recipe['id']
+}) {
+  return prisma.recipe.findFirst({
+    where: { id, organizationId },
+    include: { tags: true },
   })
 }

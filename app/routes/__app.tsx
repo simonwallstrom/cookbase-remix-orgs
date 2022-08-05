@@ -11,9 +11,11 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function AppLayout() {
   return (
-    <div className="mx-auto w-full max-w-4xl">
-      <Header />
-      <Outlet />
+    <div className="px-8">
+      <div className="mx-auto w-full max-w-3xl">
+        <Header />
+        <Outlet />
+      </div>
     </div>
   )
 }

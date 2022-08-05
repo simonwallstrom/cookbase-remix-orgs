@@ -1,7 +1,7 @@
 import type { LoaderArgs } from '@remix-run/node'
-import { Form, useLoaderData, useSearchParams, useSubmit } from '@remix-run/react'
+import { Form, Link, useLoaderData, useSearchParams, useSubmit } from '@remix-run/react'
 import Pagination from '~/components/Pagination'
-import { getRecipeCount, getRecipesByOrganizationId } from '~/models/recipe.server'
+import { getRecipeCount, getRecipes } from '~/models/recipe.server'
 import { getTagsByOrganizationId } from '~/models/tag.server'
 import { requireAuth } from '~/utils/session.server'
 
@@ -14,7 +14,7 @@ export async function loader({ request }: LoaderArgs) {
 
   const page = pageFilter ? parseInt(pageFilter) : undefined
 
-  const recipes = await getRecipesByOrganizationId(orgId, tagFilter, page)
+  const recipes = await getRecipes(orgId, tagFilter, page)
   const { totalCount, filteredCount } = await getRecipeCount(orgId, tagFilter)
   const tags = await getTagsByOrganizationId(orgId)
 
@@ -31,16 +31,16 @@ export default function Recipes() {
 
   return (
     <div>
-      <div className="flex justify-between items-end">
+      <div className="flex items-end justify-between">
         <h1>Recipes ({totalCount})</h1>
-        <button className="bg-yellow-300 hover:bg-yellow-400 border rounded-md text-black font-medium border-black shadow-flat py-2 px-4">
+        <button className="rounded-md border border-black bg-yellow-300 py-2 px-4 font-medium text-black shadow-flat hover:bg-yellow-400">
           + Add recipe
         </button>
       </div>
 
-      <Form className="flex box mt-8 p-4 gap-4 items-center" method="get">
+      <Form className="box mt-8 flex items-center gap-4 p-4" method="get">
         {tags.map((tag) => (
-          <div key={tag.id} className="flex gap-2 items-center">
+          <div key={tag.id} className="flex items-center gap-2">
             <input
               checked={tagParams.includes(tag.title)}
               onChange={(e) => submit(e.currentTarget.form)}
@@ -51,24 +51,37 @@ export default function Recipes() {
               value={tag.title}
             />
             <label htmlFor={tag.title}>
-              {tag.title} ({tag._count.recipe})
+              {tag.title} ({tag._count.recipes})
             </label>
           </div>
         ))}
       </Form>
 
-      <div className="grid mt-8 grid-cols-3 gap-8">
+      <div className="mt-8 grid grid-cols-3 gap-8">
         {recipes.map((recipe) => (
-          <div key={recipe.id} className="box p-4">
-            <h4>{recipe.title}</h4>
-            <div>
-              {recipe.tag.map((tag) => (
-                <div className="text-xs text-gray-500 mt-1" key={tag.id}>
-                  {tag.title}
-                </div>
-              ))}
+          <Link
+            to={recipe.id}
+            key={recipe.id}
+            className="box group overflow-hidden transition-colors hover:bg-gray-100"
+          >
+            {recipe.imgUrl ? (
+              <img
+                className="aspect-[2/1] border-b border-black object-cover transition-opacity group-hover:opacity-80"
+                src={recipe.imgUrl}
+                alt=""
+              />
+            ) : null}
+            <div className="px-4 py-3">
+              <h4>{recipe.title}</h4>
+              <div className="flex">
+                {recipe.tags.map((tag) => (
+                  <div className="mt-1 rounded bg-yellow-100 px-1 text-xs" key={tag.id}>
+                    {tag.title}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
