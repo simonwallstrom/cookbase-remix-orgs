@@ -1,5 +1,5 @@
 import type { LoaderArgs } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData } from '@remix-run/react'
 import { DotsThreeOutline, Pencil } from 'phosphor-react'
 import invariant from 'tiny-invariant'
 import { getRecipe } from '~/models/recipe.server'
@@ -20,8 +20,11 @@ export async function loader({ request, params }: LoaderArgs) {
 export default function Recipe() {
   const data = useLoaderData<typeof loader>()
   return (
-    <div className="pb-36">
-      <div className="box overflow-hidden">
+    <div>
+      <div>
+        <Link to="/recipes">← Back to all recipes</Link>
+      </div>
+      <div className="box mt-8 overflow-hidden">
         {data.imgUrl ? (
           <img
             className="aspect-[2/1] w-full border-b border-black object-cover"
@@ -51,10 +54,11 @@ export default function Recipe() {
             ))}
           </div>
           <p className="mt-2 leading-relaxed">{data.content}</p>
-          <div className="mt-6">
+          <hr className="my-6 border-dashed" />
+          <div>
             <h2>Ingredients</h2>
             <ul className="mt-2 list-inside list-disc leading-relaxed">
-              <li> Ground Beef, 80/20</li>
+              <li>Ground Beef, 80/20</li>
               <li>Butter</li>
               <li>Garlic Salt</li>
               <li>Pepper</li>
@@ -66,20 +70,23 @@ export default function Recipe() {
               <li>Red Onion, peeled and slice</li>
             </ul>
           </div>
-
-          <div className="mt-6">
+          <hr className="my-6 border-dashed" />
+          <div>
             <h2>Instructions</h2>
-            <ol className="mt-2 list-inside list-decimal leading-relaxed">
-              <li> Ground Beef, 80/20</li>
-              <li>Butter</li>
-              <li>Garlic Salt</li>
-              <li>Pepper</li>
-              <li>Cheddar Cheese</li>
-              <li>Hamburger Buns</li>
-              <li>Butter, Melted</li>
-              <li>Leaf Lettuce</li>
-              <li>Tomato, sliced</li>
-              <li>Red Onion, peeled and slice</li>
+            <ol className="mt-2 list-inside list-decimal space-y-4 leading-relaxed">
+              <li>
+                Heat a cast-iron griddle or large heavy skillet over medium-high until very hot,
+                about 2 minutes, then lightly brush with vegetable oil. Divide ground beef into 4
+                equal portions (do not form patties).
+              </li>
+              <li>
+                Working in batches if needed, place portions on griddle and smash flat with a
+                spatula to form four diameter patties (craggy edges are your friend). Season
+                liberally with salt and cook, undisturbed, until outer edges are brown, about 2
+                minutes. Flip patties, season with salt, and place a slice of cheese on top of each
+                patty. Cook until cheese droops and burgers are medium-rare, about 1 minute.
+              </li>
+              <li>Serve patties on rolls with ketchup, mayonnaise, lettuce, and pickles.</li>
             </ol>
           </div>
         </div>

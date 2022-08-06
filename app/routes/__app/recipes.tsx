@@ -33,9 +33,12 @@ export default function Recipes() {
     <div>
       <div className="flex items-end justify-between">
         <h1>Recipes ({totalCount})</h1>
-        <button className="rounded-md border border-black bg-yellow-300 py-2 px-4 font-medium text-black shadow-flat hover:bg-yellow-400">
+        <Link
+          to="new"
+          className="rounded-md border border-black bg-yellow-300 py-2 px-4 font-medium text-black shadow-flat hover:bg-yellow-400"
+        >
           + Add recipe
-        </button>
+        </Link>
       </div>
 
       <Form className="box mt-8 flex items-center gap-4 p-4" method="get">
@@ -75,7 +78,7 @@ export default function Recipes() {
               <h4>{recipe.title}</h4>
               <div className="flex">
                 {recipe.tags.map((tag) => (
-                  <div className="mt-1 rounded bg-yellow-100 px-1 text-xs" key={tag.id}>
+                  <div className="mt-1 rounded text-xs text-gray-600" key={tag.id}>
                     {tag.title}
                   </div>
                 ))}
