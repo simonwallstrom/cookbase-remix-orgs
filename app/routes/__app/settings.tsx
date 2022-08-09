@@ -18,7 +18,7 @@ export default function Settings() {
   return (
     <div>
       <h1>Settings</h1>
-      <p className="mt-2">Manage your user and family account settings.</p>
+      <p className="mt-1">Manage your user and family account settings.</p>
       <div className="box mt-8 px-8 py-7">
         <h2>User settings</h2>
         <Form action="/logout" method="post">
@@ -73,6 +73,11 @@ export default function Settings() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="box mt-8 px-8 py-7">
+        <h2>Tags</h2>
+        <p className="mt-1">Manage tags for this account.</p>
       </div>
     </div>
   )

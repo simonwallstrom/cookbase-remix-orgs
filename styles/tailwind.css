@@ -7,20 +7,11 @@
    - Global styles for HTML tag selectors
 ---------------------------------------------------------------------------- */
 @layer base {
-  @font-face {
-    font-family: 'Recursive';
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: normal;
-    font-named-instance: 'Regular';
-    src: url('/Recursive.woff2') format('woff2');
-  }
-
   h1,
   h2,
   h3,
   h4 {
-    @apply font-medium text-gray-900;
+    @apply font-semibold text-gray-900;
   }
 
   h1 {
@@ -35,19 +26,23 @@
     @apply text-base;
   }
 
-  strong {
-    @apply font-medium;
+  hr {
+    @apply border-black;
   }
 
-  hr {
-    @apply border-gray-900;
+  .label {
+    @apply font-medium text-gray-900;
   }
 
   input[type='text'],
   input[type='password'],
   input[type='number'],
   input[type='email'] {
-    @apply border-black text-sm max-w-md;
+    @apply rounded-md border-black text-sm focus:border-pink-500 focus:ring-pink-500;
+  }
+
+  input[type='checkbox'] {
+    @apply rounded border-black;
   }
 }
 
@@ -57,7 +52,7 @@
 ---------------------------------------------------------------------------- */
 @layer components {
   .box {
-    @apply bg-white border border-black shadow-flat rounded-lg;
+    @apply rounded-lg border border-black bg-white shadow-flat;
   }
 
   .text-link {
@@ -66,6 +61,10 @@
 
   .text-link--danger {
     @apply text-red-600;
+  }
+
+  .prose ul {
+    @apply list-disc pl-3.5;
   }
 }
 

@@ -28,7 +28,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="flex min-h-full selection:bg-yellow-200 flex-col text-sm text-black">
+      <body className="flex min-h-full flex-col text-sm text-gray-700 selection:bg-yellow-200">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -47,7 +47,7 @@ export function CatchBoundary() {
         <Links />
         <title>Cookbase</title>
       </head>
-      <body className="flex selection:bg-yellow-200 min-h-full flex-col text-sm text-gray-700">
+      <body className="flex min-h-full flex-col text-sm text-gray-700 selection:bg-yellow-200">
         <div className="flex flex-1 flex-col items-center justify-center gap-4">
           <h1>{caught.status}</h1>
           <p>{caught.data}</p>

@@ -76,9 +76,9 @@ export default function Recipes() {
             ) : null}
             <div className="px-4 py-3">
               <h4>{recipe.title}</h4>
-              <div className="flex">
+              <div className="flex gap-2">
                 {recipe.tags.map((tag) => (
-                  <div className="mt-1 rounded text-xs text-gray-600" key={tag.id}>
+                  <div className="mt-0.5 rounded text-xs text-gray-600" key={tag.id}>
                     {tag.title}
                   </div>
                 ))}
