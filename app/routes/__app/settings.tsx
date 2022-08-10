@@ -19,7 +19,7 @@ export default function Settings() {
     <div>
       <h1>Settings</h1>
       <p className="mt-1">Manage your user and family account settings.</p>
-      <div className="box mt-8 px-8 py-7">
+      <div className="box mt-8 p-8">
         <h2>User settings</h2>
         <Form action="/logout" method="post">
           <div className="mt-2 flex justify-between">
@@ -32,7 +32,7 @@ export default function Settings() {
           </div>
         </Form>
       </div>
-      <div className="box mt-8 px-8 py-7">
+      <div className="box mt-8 p-8">
         <h2>Account settings</h2>
         <div className="mt-2 flex justify-between">
           <div>
@@ -75,7 +75,7 @@ export default function Settings() {
         </div>
       </div>
 
-      <div className="box mt-8 px-8 py-7">
+      <div className="box mt-8 p-8">
         <h2>Tags</h2>
         <p className="mt-1">Manage tags for this account.</p>
       </div>

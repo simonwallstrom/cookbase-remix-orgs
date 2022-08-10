@@ -1,5 +1,6 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Form, Link, useLoaderData, useSearchParams, useSubmit } from '@remix-run/react'
+import { ImageSquare } from 'phosphor-react'
 import Pagination from '~/components/Pagination'
 import { getRecipeCount, getRecipes } from '~/models/recipe.server'
 import { getTagsByOrganizationId } from '~/models/tag.server'
@@ -75,7 +76,11 @@ export default function Recipes() {
                 src={recipe.imgUrl}
                 alt=""
               />
-            ) : null}
+            ) : (
+              <div className="flex aspect-[2/1] items-center justify-center border-b border-black bg-gray-200">
+                <ImageSquare size={36} className="text-gray-500" weight="duotone" />
+              </div>
+            )}
             <div className="px-4 py-3">
               <h4 className="line-clamp-1">{recipe.title}</h4>
               <div className="flex gap-2">

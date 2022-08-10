@@ -53,20 +53,17 @@ export default function NewRecipe() {
 
   return (
     <div>
-      <div className="flex items-center gap-4">
-        <Link
-          to="/recipes"
-          className="flex rounded-full border border-black bg-white p-2 font-medium text-black shadow-flat hover:bg-gray-200"
-        >
+      <div className="flex">
+        <ButtonLink href="/recipes">
           <ArrowFatLeft weight="duotone" size={20} />
-        </Link>
-        <h1>Add recipe</h1>
+          <span>Back to app</span>
+        </ButtonLink>
       </div>
       <div className="box mt-8 overflow-hidden p-12">
         <Form method="post">
           {/* Upload image */}
           <div className="flex flex-col items-center justify-center space-y-1.5 rounded-lg border border-dashed border-black px-4 py-10">
-            <ImageSquare size={36} className="text-yellow-500" weight="duotone" />
+            <ImageSquare size={36} className="text-gray-500" weight="duotone" />
             <label className="label" htmlFor="title">
               Upload image
             </label>
