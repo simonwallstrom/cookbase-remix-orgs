@@ -165,6 +165,7 @@ export default function SignUp() {
           )}
         </div>
 
+        {/* Password input */}
         <div>
           <label htmlFor="password" className="sr-only">
             Password
@@ -186,6 +187,7 @@ export default function SignUp() {
             </div>
           )}
         </div>
+
         <div>
           <Button size="lg" variant="secondary" className="w-full" type="submit">
             Create account
