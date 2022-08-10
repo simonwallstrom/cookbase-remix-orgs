@@ -4,7 +4,7 @@ import React from 'react'
 
 type BaseProps = {
   children: React.ReactNode | React.ReactNode[]
-  variant?: 'primary' | 'secondary' | 'danger'
+  variant?: 'default' | 'secondary' | 'primary' | 'danger'
   size?: 'sm' | 'md' | 'lg'
   classNames?: string
 }
@@ -17,13 +17,12 @@ type ButtonAsButton = BaseProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 type ButtonAsLink = LinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 const shared =
-  'flex items-center justify-center font-medium space-x-1 rounded-lg px-4 py-2 active:scale-[.99] border'
+  'flex items-center justify-center transition-colors font-medium shadow-flat text-black space-x-2 rounded-lg active:scale-[.99] border'
 
-const getVariant = (variant: BaseProps['variant'] = 'secondary') => {
-  if (variant === 'primary')
-    return 'border-pink-700 bg-pink-500 text-white shadow hover:bg-pink-600'
-  if (variant === 'secondary')
-    return 'border-gray-300 focus:outline-gray-900 bg-white shadow-sm hover:bg-gray-50'
+const getVariant = (variant: BaseProps['variant'] = 'default') => {
+  if (variant === 'default') return 'border-black bg-white hover:bg-gray-200'
+  if (variant === 'secondary') return 'border-black bg-yellow-300 hover:bg-yellow-400'
+  if (variant === 'primary') return 'border-black bg-pink-300 hover:bg-pink-400'
   if (variant === 'danger')
     return 'border-red-400 focus:outline-red-500 bg-red-100 text-red-600 hover:text-red-800 hover:border-red-500 shadow-sm hover:bg-red-200'
 }
@@ -51,7 +50,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonAsButton>(functi
 
 export const ButtonLink: React.FunctionComponent<ButtonAsLink> = ({
   children,
-  variant = 'secondary',
+  variant = 'default',
   size = 'md',
   href,
   className,

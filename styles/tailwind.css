@@ -20,7 +20,7 @@
   h2,
   h3,
   h4 {
-    @apply font-semibold text-gray-900;
+    @apply font-semibold;
   }
 
   h1 {
@@ -47,11 +47,11 @@
   input[type='password'],
   input[type='number'],
   input[type='email'] {
-    @apply rounded-md border-black text-sm focus:border-pink-500 focus:ring-pink-500;
+    @apply block w-full rounded-md border-black text-sm placeholder:text-gray-400 focus:border-pink-500 focus:ring-pink-500;
   }
 
   input[type='checkbox'] {
-    @apply rounded border-black;
+    @apply rounded border-black text-pink-600 focus:ring-pink-600;
   }
 }
 
@@ -61,7 +61,7 @@
 ---------------------------------------------------------------------------- */
 @layer components {
   .box {
-    @apply rounded-lg border border-black bg-white shadow-flat-sm;
+    @apply rounded-xl border border-black bg-white shadow-flat-sm;
   }
 
   .text-link {
