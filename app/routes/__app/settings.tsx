@@ -1,5 +1,6 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
+import { getInvitations } from '~/models/invitation.server'
 import { getOrganizationById, getOrganizationMembersById } from '~/models/organization.server'
 import { getUserById } from '~/models/user.server'
 import { requireAuth } from '~/utils/session.server'
@@ -9,12 +10,14 @@ export async function loader({ request }: LoaderArgs) {
   const user = await getUserById(userId)
   const members = await getOrganizationMembersById(orgId)
   const organization = await getOrganizationById(orgId)
+  const invitation = await getInvitations(orgId)
 
-  return { user, members, organization }
+  return { user, members, organization, invitation }
 }
 
 export default function Settings() {
   const data = useLoaderData<typeof loader>()
+  console.log(data)
   return (
     <div>
       <h1>Settings</h1>
@@ -46,7 +49,7 @@ export default function Settings() {
         <div>
           <h3>Members</h3>
           <ol className="mt-2 list-inside list-disc">
-            {data.members.map((member) => (
+            {data.members?.map((member) => (
               <li key={member.email}>
                 {member.email}
                 {member.email == data.user?.email ? <span>(You)</span> : null}
@@ -55,21 +58,21 @@ export default function Settings() {
           </ol>
         </div>
         <div className="mt-6">
-          <h4>Invite link</h4>
-          <label htmlFor="invite_link" className="mt-2 block">
-            Share this link to allow others to join your account:
+          <label htmlFor="invite_link" className="label mt-1.5 block">
+            Invite link
           </label>
-          <div className="mt-2">
+          <div className="mt-1.5">
             <input
               type="text"
               disabled={true}
-              defaultValue={`cookbase.fly.dev/invite/${data.organization?.invitations[0].id}`}
+              value={`cookbase.fly.dev/invite/${data.invitation?.id}`}
               name="invite_link"
               id="invite_link"
               className="w-full"
             />
-            <p className="mt-2 text-xs text-gray-500">
-              Anyone with the link can join your account, make sure to keep it safe.
+            <p className="mt-1.5 text-xs text-gray-500">
+              Share this link to allow others to join your account. Anyone with the link can join
+              your account so make sure to keep it safe.
             </p>
           </div>
         </div>

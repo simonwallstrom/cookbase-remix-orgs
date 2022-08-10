@@ -4,9 +4,6 @@ import { prisma } from '~/utils/prisma.server'
 export async function getOrganizationById(id: Organization['id']) {
   return prisma.organization.findUnique({
     where: { id },
-    include: {
-      invitations: true,
-    },
   })
 }
 

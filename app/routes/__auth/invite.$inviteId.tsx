@@ -1,7 +1,7 @@
 import { type LoaderArgs, redirect, json, type ActionArgs } from '@remix-run/node'
 import { Form, Link, useActionData, useLoaderData } from '@remix-run/react'
 import invariant from 'tiny-invariant'
-import { getInviteById } from '~/models/invite.server'
+import { getInviteById } from '~/models/invitation.server'
 import { createUserSession, getUserId } from '~/utils/session.server'
 import * as React from 'react'
 import { z } from 'zod'
