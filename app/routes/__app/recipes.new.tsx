@@ -1,5 +1,5 @@
 import { type ActionArgs, json, type LoaderArgs } from '@remix-run/node'
-import { Form, Link, useActionData, useLoaderData } from '@remix-run/react'
+import { Form, useActionData, useLoaderData } from '@remix-run/react'
 import { ArrowFatLeft, ImageSquare } from 'phosphor-react'
 import { z } from 'zod'
 import Tiptap from '~/components/Tiptap'

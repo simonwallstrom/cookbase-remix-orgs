@@ -41,7 +41,7 @@ export default function Recipe() {
           </div>
         </div>
       </div>
-      <div className="box mt-8 overflow-hidden">
+      <div className="box mt-6 overflow-hidden md:mt-8">
         {data.imgUrl ? (
           <img
             className="aspect-[2/1] w-full border-b border-black object-cover"
@@ -49,13 +49,12 @@ export default function Recipe() {
             alt=""
           />
         ) : null}
-        <div className="px-12 py-10">
+        <div className="px-6 py-5 md:py-8 md:px-10">
           <h1>{data.title}</h1>
-          <div className="mt-2 flex flex-col gap-3.5 border-b-2 border-black pb-8">
+          <div className="mt-2 flex flex-col gap-3.5 border-b-2 border-black pb-6 md:pb-8">
             <div className="flex items-center gap-2">
               <div>
-                Simon Wallström <span className="text-gray-500">created this recipe</span> 7 days
-                ago
+                Simon <span className="text-gray-500">created this recipe</span> 7 days ago
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -67,7 +66,10 @@ export default function Recipe() {
               ))}
             </div>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: data.content }} className="tiptap mt-6"></div>
+          <div
+            dangerouslySetInnerHTML={{ __html: data.content }}
+            className="tiptap mt-4 md:mt-6"
+          ></div>
         </div>
       </div>
     </div>

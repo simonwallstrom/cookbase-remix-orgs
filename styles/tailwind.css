@@ -50,6 +50,14 @@
     @apply block w-full rounded-md border-black text-sm placeholder:text-gray-400 focus:border-pink-500 focus:ring-pink-500;
   }
 
+  .input {
+    @apply block w-full rounded-md border-black text-sm placeholder:text-gray-400 focus:border-pink-500 focus:ring-pink-500;
+  }
+
+  .auth-input {
+    @apply w-full !rounded-lg py-3 px-4 shadow-flat transition-shadow placeholder:!text-gray-500 focus:shadow-none;
+  }
+
   input[type='checkbox'] {
     @apply rounded border-black text-pink-600 focus:ring-pink-600;
   }

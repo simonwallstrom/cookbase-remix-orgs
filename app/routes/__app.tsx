@@ -13,7 +13,7 @@ export default function AppLayout() {
   return (
     <>
       <Header />
-      <div className="px-6 pt-8 pb-36">
+      <div className="px-4 pt-6 pb-36 md:px-6 md:pt-8">
         <div className="mx-auto w-full max-w-2xl">
           <Outlet />
         </div>
