@@ -60,16 +60,16 @@ export default function Recipes() {
         ))}
       </Form>
 
-      <div className="mt-8 grid grid-cols-3 gap-8">
+      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
         {recipes.map((recipe) => (
           <Link
             to={recipe.id}
             key={recipe.id}
-            className="box group overflow-hidden transition-colors hover:bg-gray-100"
+            className="box group overflow-hidden transition-colors hover:bg-gray-50"
           >
             {recipe.imgUrl ? (
               <img
-                className="aspect-[2/1] border-b border-black object-cover transition-opacity group-hover:opacity-80"
+                className="aspect-[2/1] border-b border-black object-cover"
                 src={recipe.imgUrl}
                 alt=""
               />

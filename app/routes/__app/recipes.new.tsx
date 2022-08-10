@@ -59,7 +59,7 @@ export default function NewRecipe() {
         </Link>
         <h1>Add recipe</h1>
       </div>
-      <div className="box mt-8 overflow-hidden p-10">
+      <div className="box mt-8 overflow-hidden p-12">
         <Form method="post">
           <div className="flex flex-col items-center justify-center space-y-1.5 rounded-lg border-2 border-dashed border-black px-4 py-10">
             <ImageSquare size={48} className="text-gray-400 dark:text-gray-600" weight="light" />

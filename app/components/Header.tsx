@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 
 export default function Header() {
   return (
-    <header className="border-b-2 border-black bg-white">
-      <div className="mx-auto flex w-full max-w-3xl gap-8">
+    <header className="sticky top-0 border-b-2 border-black bg-white px-6">
+      <div className="mx-auto flex w-full max-w-2xl gap-8">
         <CustomNavLink label="Dashboard" to="/dashboard" />
         <CustomNavLink label="Recipes" to="/recipes" />
         <CustomNavLink label="Meal planner" to="/meal-planner" />
@@ -23,7 +23,8 @@ function CustomNavLink({ to, label }: { to: string; label: string }) {
       }
       to={to}
     >
-      {({ isActive }) => (
+      {label}
+      {/* {({ isActive }) => (
         <>
           <div className="relative z-10">{label}</div>
 
@@ -35,7 +36,7 @@ function CustomNavLink({ to, label }: { to: string; label: string }) {
             ></motion.div>
           ) : null}
         </>
-      )}
+      )} */}
     </NavLink>
   )
 }

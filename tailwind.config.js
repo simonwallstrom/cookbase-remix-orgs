@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{ts,tsx,jsx,js}'],
@@ -5,6 +7,9 @@ module.exports = {
     extend: {
       fontSize: {
         sm: ['0.875rem', { lineHeight: '1.25rem' }],
+      },
+      fontFamily: {
+        sans: ['Recursive', ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
         'flat-sm': '1px 1px 0 #000',
