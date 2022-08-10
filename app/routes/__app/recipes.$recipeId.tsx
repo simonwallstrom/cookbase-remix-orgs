@@ -2,6 +2,7 @@ import type { LoaderArgs } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 import { ArrowFatLeft, DotsThreeOutline, Pencil } from 'phosphor-react'
 import invariant from 'tiny-invariant'
+import { Button, ButtonLink } from '~/components/Button'
 import { getRecipe } from '~/models/recipe.server'
 import { requireAuth } from '~/utils/session.server'
 
@@ -23,21 +24,20 @@ export default function Recipe() {
     <div>
       <div className="flex items-center justify-between">
         <div>
-          <Link
-            to="/recipes"
-            className="flex rounded-full border border-black bg-white p-2 font-medium text-black shadow-flat hover:bg-gray-200"
-          >
+          <ButtonLink href="/recipes">
             <ArrowFatLeft weight="duotone" size={20} />
-          </Link>
+            <span>Back to app</span>
+          </ButtonLink>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex rounded-full border border-black bg-white p-2 font-medium text-black shadow-flat hover:bg-gray-200">
+          <ButtonLink href="/recipes">
             <Pencil weight="duotone" size={20} />
-          </button>
+            <span>Edit</span>
+          </ButtonLink>
           <div>
-            <button className="flex rounded-full border border-black bg-white p-2 font-medium text-black shadow-flat hover:bg-gray-200">
+            <Button>
               <DotsThreeOutline weight="duotone" size={20} />
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ export default function Recipe() {
               ))}
             </div>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: data.content }} className="mt-6"></div>
+          <div dangerouslySetInnerHTML={{ __html: data.content }} className="tiptap mt-6"></div>
         </div>
       </div>
     </div>

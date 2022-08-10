@@ -71,10 +71,6 @@
   .text-link--danger {
     @apply text-red-600;
   }
-
-  .prose ul {
-    @apply list-disc pl-3.5;
-  }
 }
 
 /* ----------------------------------------------------------------------------
@@ -83,4 +79,54 @@
 ---------------------------------------------------------------------------- */
 @layer utilities {
   /* Utility styles here */
+}
+
+/* ----------------------------------------------------------------------------
+   TIPTAP STYLES
+   - The styles for rendering the content in the editor and on the recipe page
+---------------------------------------------------------------------------- */
+
+.tiptap:first-child > * {
+  @apply mt-0;
+}
+
+.tiptap h2 {
+  @apply mb-2 mt-4;
+}
+
+.tiptap p {
+  @apply my-2 leading-relaxed;
+}
+
+.tiptap ul li,
+.tiptap ol li {
+  @apply my-2;
+}
+
+.tiptap ul {
+  @apply list-disc pl-3;
+}
+
+.tiptap ul li {
+  padding-inline-start: 14px;
+}
+
+.tiptap ol {
+  @apply list-decimal pl-4;
+}
+
+.tiptap ol li {
+  padding-inline-start: 10px;
+}
+
+.tiptap ul li {
+  list-style-type: '→';
+}
+
+.tiptap li p {
+  @apply inline;
+}
+
+.tiptap li::marker {
+  @apply font-semibold text-gray-400;
 }

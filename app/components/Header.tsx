@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 export default function Header() {
   return (
-    <header className="sticky top-0 border-b-2 border-black bg-white px-6">
+    <header className="sticky top-0 z-10 border-b-2 border-black bg-white px-6">
       <div className="mx-auto flex w-full max-w-2xl gap-8">
         <CustomNavLink label="Dashboard" to="/dashboard" />
         <CustomNavLink label="Recipes" to="/recipes" />

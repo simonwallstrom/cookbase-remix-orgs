@@ -54,7 +54,7 @@ const Tiptap = ({ content }: { content: string }) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: 'border border-black rounded-b-md p-4 outline-none',
+        class: 'border border-black tiptap rounded-b-md p-4 outline-none',
       },
     },
     extensions: [
@@ -92,6 +92,7 @@ function MenuButton({
       className={`rounded p-1.5 hover:bg-gray-100 ${
         isActive ? 'bg-gray-200 hover:bg-gray-200' : ''
       }`}
+      type="button"
       onClick={onClick}
     >
       {children}

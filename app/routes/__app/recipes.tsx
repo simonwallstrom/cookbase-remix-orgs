@@ -41,6 +41,7 @@ export default function Recipes() {
         </Link>
       </div>
 
+      {/* Tag filter */}
       <Form className="box mt-8 flex items-center gap-4 p-4" method="get">
         {tags.map((tag) => (
           <div key={tag.id} className="flex items-center gap-2">
@@ -60,7 +61,8 @@ export default function Recipes() {
         ))}
       </Form>
 
-      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
+      {/* Recipe grid */}
+      <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-2">
         {recipes.map((recipe) => (
           <Link
             to={recipe.id}
@@ -75,7 +77,7 @@ export default function Recipes() {
               />
             ) : null}
             <div className="px-4 py-3">
-              <h4>{recipe.title}</h4>
+              <h4 className="line-clamp-1">{recipe.title}</h4>
               <div className="flex gap-2">
                 {recipe.tags.map((tag) => (
                   <div className="mt-0.5 rounded text-xs text-gray-600" key={tag.id}>
