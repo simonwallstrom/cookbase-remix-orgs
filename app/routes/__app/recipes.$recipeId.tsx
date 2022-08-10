@@ -1,5 +1,5 @@
 import type { LoaderArgs } from '@remix-run/node'
-import { Link, useLoaderData } from '@remix-run/react'
+import { useLoaderData } from '@remix-run/react'
 import { ArrowFatLeft, DotsThreeOutline, Pencil } from 'phosphor-react'
 import invariant from 'tiny-invariant'
 import { Button, ButtonLink } from '~/components/Button'

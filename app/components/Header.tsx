@@ -1,5 +1,4 @@
 import { NavLink } from '@remix-run/react'
-import { motion } from 'framer-motion'
 
 export default function Header() {
   return (
@@ -24,19 +23,6 @@ function CustomNavLink({ to, label }: { to: string; label: string }) {
       to={to}
     >
       {label}
-      {/* {({ isActive }) => (
-        <>
-          <div className="relative z-10">{label}</div>
-
-          {isActive ? (
-            <motion.div
-              transition={{ duration: '.2' }}
-              className="absolute bottom-0 left-0 z-10 h-0.5 w-full bg-pink-500"
-              layoutId="underline"
-            ></motion.div>
-          ) : null}
-        </>
-      )} */}
     </NavLink>
   )
 }
