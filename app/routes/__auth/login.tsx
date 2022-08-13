@@ -10,14 +10,14 @@ import { Button } from '~/components/Button'
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request)
-  if (userId) return redirect('/dashboard')
+  if (userId) return redirect('/recipes')
   return json({})
 }
 
 const loginSchema = z.object({
   email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
   password: z.string().min(6, 'Password must be atleast 6 characters long'),
-  redirectTo: z.string().default('/dashboard'),
+  redirectTo: z.string().default('/recipes'),
 })
 
 type ActionInput = z.infer<typeof loginSchema>
@@ -56,7 +56,7 @@ export const meta: MetaFunction = () => {
 
 export default function LoginPage() {
   const [searchParams] = useSearchParams()
-  const redirectTo = searchParams.get('redirectTo') || '/dashboard'
+  const redirectTo = searchParams.get('redirectTo') || '/recipes'
   const actionData = useActionData<typeof action>()
   const emailRef = React.useRef<HTMLInputElement>(null)
   const passwordRef = React.useRef<HTMLInputElement>(null)

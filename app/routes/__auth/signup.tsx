@@ -10,7 +10,7 @@ import { Button } from '~/components/Button'
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request)
-  if (userId) return redirect('/dashboard')
+  if (userId) return redirect('/recipes')
   return json({})
 }
 
@@ -21,7 +21,7 @@ const joinSchema = z.object({
     .max(50, 'Account name can not be longer than 50 characters'),
   email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
   password: z.string().min(6, 'Password must be atleast 6 characters long'),
-  redirectTo: z.string().default('/dashboard'),
+  redirectTo: z.string().default('/recipes'),
 })
 
 type ActionInput = z.infer<typeof joinSchema>

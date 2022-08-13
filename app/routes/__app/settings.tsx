@@ -17,7 +17,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Settings() {
   const data = useLoaderData<typeof loader>()
-  console.log(data)
+
   return (
     <div>
       <h1>Settings</h1>

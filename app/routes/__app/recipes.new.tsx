@@ -20,7 +20,7 @@ export async function loader({ request }: LoaderArgs) {
 const recipeSchema = z.object({
   title: z.string({ required_error: 'Title is required' }).min(1),
   content: z.string(),
-  tag: z.array(z.string()),
+  tag: z.array(z.string()).optional(),
 })
 
 export async function action({ request }: ActionArgs) {
@@ -38,7 +38,7 @@ export async function action({ request }: ActionArgs) {
         connect: { id: orgId },
       },
       tags: {
-        connect: result.data.tag.map((id) => ({ id: id })),
+        connect: result.data.tag?.map((id) => ({ id: id })),
       },
     },
   })

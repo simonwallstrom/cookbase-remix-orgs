@@ -11,7 +11,7 @@ import { createInvitedUser, getUserByEmail } from '~/models/user.server'
 export async function loader({ params, request }: LoaderArgs) {
   invariant(params.inviteId)
   const userId = await getUserId(request)
-  if (userId) return redirect('/dashboard')
+  if (userId) return redirect('/recipes')
 
   const invite = await getInviteById(params.inviteId)
 
@@ -27,7 +27,7 @@ const joinSchema = z.object({
   organizationId: z.string().cuid(),
   email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
   password: z.string().min(6, 'Password must be atleast 6 characters long'),
-  redirectTo: z.string().default('/dashboard'),
+  redirectTo: z.string().default('/recipes'),
 })
 
 type ActionInput = z.infer<typeof joinSchema>

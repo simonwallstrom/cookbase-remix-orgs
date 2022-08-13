@@ -64,10 +64,10 @@ export default function Index() {
             ) : (
               <div className="flex">
                 <Link
-                  to="/dashboard"
+                  to="/recipes"
                   className="w-full rounded-lg border border-black bg-yellow-300 py-3 px-4 font-medium text-black shadow-flat transition-all hover:bg-yellow-400 active:shadow-flat-sm"
                 >
-                  <span>Open dashboard</span>
+                  <span>Open recipes</span>
                 </Link>
               </div>
             )}
@@ -90,7 +90,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -101,7 +101,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -114,7 +114,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -125,7 +125,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -136,31 +136,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
-                                data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
-                        sizes="(min-width: 768px) 224px,
-                               (max-width: 767px) 1px"
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
-                      <img
-                        alt="Recipe"
-                        src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
-                                data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
-                        sizes="(min-width: 768px) 224px,
-                               (max-width: 767px) 1px"
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
-                      <img
-                        alt="Recipe"
-                        src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -173,7 +149,31 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="/burger.png 768w,
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                                data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
+                        sizes="(min-width: 768px) 224px,
+                               (max-width: 767px) 1px"
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                      <img
+                        alt="Recipe"
+                        src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                                data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
+                        sizes="(min-width: 768px) 224px,
+                               (max-width: 767px) 1px"
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                      <img
+                        alt="Recipe"
+                        src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
+                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"

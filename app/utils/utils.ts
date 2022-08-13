@@ -11,8 +11,6 @@ export async function validateAction<ActionInput>({
 }) {
   const body = Object.fromEntries(await request.formData())
 
-  console.log(body)
-
   try {
     const formData = schema.parse(body) as ActionInput
     return { formData, errors: null }

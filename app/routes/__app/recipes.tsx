@@ -43,24 +43,26 @@ export default function Recipes() {
       </div>
 
       {/* Tag filter */}
-      <Form className="box mt-8 flex items-center gap-4 p-4" method="get">
-        {tags.map((tag) => (
-          <div key={tag.id} className="flex items-center gap-2">
-            <input
-              checked={tagParams.includes(tag.title)}
-              onChange={(e) => submit(e.currentTarget.form)}
-              className="text-pink-600 focus:ring-pink-600"
-              type="checkbox"
-              id={tag.title}
-              name="tag"
-              value={tag.title}
-            />
-            <label htmlFor={tag.title}>
-              {tag.title} ({tag._count.recipes})
-            </label>
-          </div>
-        ))}
-      </Form>
+      {tags.length ? (
+        <Form className="box mt-8 flex items-center gap-4 p-4" method="get">
+          {tags.map((tag) => (
+            <div key={tag.id} className="flex items-center gap-2">
+              <input
+                checked={tagParams.includes(tag.title)}
+                onChange={(e) => submit(e.currentTarget.form)}
+                className="text-pink-600 focus:ring-pink-600"
+                type="checkbox"
+                id={tag.title}
+                name="tag"
+                value={tag.title}
+              />
+              <label htmlFor={tag.title}>
+                {tag.title} ({tag._count.recipes})
+              </label>
+            </div>
+          ))}
+        </Form>
+      ) : null}
 
       {/* Recipe grid */}
       <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-2">
