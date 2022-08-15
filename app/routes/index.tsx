@@ -15,7 +15,7 @@ export default function Index() {
   return (
     <div className="flex flex-1">
       {/* Content */}
-      <div className="flex flex-1 items-center bg-yellow-200">
+      <div className="flex flex-1 items-center bg-yellow-300">
         <div className="flex flex-1 items-center justify-center p-6">
           <div className="w-full max-w-xs space-y-8 text-center">
             <div>
