@@ -11,5 +11,10 @@ export async function getTagsByOrganizationId(organizationId: Organization['id']
         },
       },
     },
+    orderBy: {
+      recipes: {
+        _count: 'desc',
+      },
+    },
   })
 }

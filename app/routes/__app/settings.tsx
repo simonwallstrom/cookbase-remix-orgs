@@ -77,11 +77,6 @@ export default function Settings() {
           </div>
         </div>
       </div>
-
-      <div className="box mt-8 p-8">
-        <h2>Tags</h2>
-        <p className="mt-1">Manage tags for this account.</p>
-      </div>
     </div>
   )
 }

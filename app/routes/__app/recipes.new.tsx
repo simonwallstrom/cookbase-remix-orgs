@@ -59,7 +59,7 @@ export default function NewRecipe() {
           <span>Back to app</span>
         </ButtonLink>
       </div>
-      <div className="box mt-8 overflow-hidden p-12">
+      <div className="box mt-8 overflow-hidden p-8">
         <Form method="post">
           {/* Upload image */}
           <div className="flex flex-col items-center justify-center space-y-1.5 rounded-lg border border-dashed border-black px-4 py-10">
@@ -105,7 +105,8 @@ export default function NewRecipe() {
               ))}
             </div>
             <p className="text-xs text-gray-500">
-              Choose one or multiple tags for this recipe. You can create new tags under "Settings".
+              Choose one or multiple tags for this recipe. You can create new tags on the
+              "Tags"-page.
             </p>
           </div>
 
@@ -124,7 +125,7 @@ export default function NewRecipe() {
           <pre>{JSON.stringify(actionData, null, 2)}</pre>
 
           {/* Submit button */}
-          <div className="mt-8 flex gap-8">
+          <div className="mt-6 flex gap-8">
             <Button variant="secondary" type="submit">
               Save recipe
             </Button>

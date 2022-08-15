@@ -49,7 +49,7 @@ export default function Recipe() {
             alt=""
           />
         ) : null}
-        <div className="px-6 py-5 md:py-8 md:px-10">
+        <div className="p-6 md:p-8">
           <h1>{data.title}</h1>
           <div className="mt-2 flex flex-col gap-3.5 border-b-2 border-black pb-6 md:pb-8">
             <div className="flex items-center gap-2">

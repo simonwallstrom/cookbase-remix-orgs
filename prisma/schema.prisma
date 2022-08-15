@@ -65,4 +65,6 @@ model Tag {
   organizationId String
   title          String
   recipes        Recipe[]
+
+  @@unique([organizationId, title])
 }

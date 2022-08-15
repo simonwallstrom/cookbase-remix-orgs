@@ -1,5 +1,6 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
+import { Button, ButtonLink } from '~/components/Button'
 import { getUserId } from '~/utils/session.server'
 
 export async function loader({ request }: LoaderArgs) {
@@ -14,7 +15,7 @@ export default function Index() {
   return (
     <div className="flex flex-1">
       {/* Content */}
-      <div className="flex flex-1 items-center">
+      <div className="flex flex-1 items-center bg-yellow-200">
         <div className="flex flex-1 items-center justify-center p-6">
           <div className="w-full max-w-xs space-y-8 text-center">
             <div>
@@ -47,28 +48,22 @@ export default function Index() {
               </Link>
             </div>
             <h2 className="text-xl font-normal text-gray-900">
-              Cookbase is a recipe organizer and meal planner for families.
+              Create, share and organize your favorite recipes.
             </h2>
             {!user ? (
               <div className="flex flex-col items-center justify-center space-y-5">
-                <button className="w-full rounded-lg border border-black bg-pink-300 py-3 px-4 font-medium text-black shadow-flat transition-all hover:bg-pink-400 active:shadow-flat-sm">
-                  <span>Signup to get started</span>
-                </button>
-                <Link
-                  to="/login"
-                  className="w-full rounded-lg border border-black bg-yellow-300 py-3 px-4 font-medium text-black shadow-flat transition-all hover:bg-yellow-400 active:shadow-flat-sm"
-                >
-                  <span>Login to continue</span>
-                </Link>
+                <Button className="w-full" size="lg" variant="primary">
+                  Signup to get started
+                </Button>
+                <ButtonLink className="w-full" size="lg" href="/login">
+                  Login to continue
+                </ButtonLink>
               </div>
             ) : (
               <div className="flex">
-                <Link
-                  to="/recipes"
-                  className="w-full rounded-lg border border-black bg-yellow-300 py-3 px-4 font-medium text-black shadow-flat transition-all hover:bg-yellow-400 active:shadow-flat-sm"
-                >
-                  <span>Open recipes</span>
-                </Link>
+                <ButtonLink className="w-full" size="lg" href="/recipes">
+                  Go to recipes
+                </ButtonLink>
               </div>
             )}
           </div>
@@ -90,7 +85,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                        srcSet="https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -101,7 +96,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                        srcSet="https://images.pexels.com/photos/6941039/pexels-photo-6941039.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -114,7 +109,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                        srcSet="https://images.pexels.com/photos/357573/pexels-photo-357573.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -136,7 +131,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                        srcSet="https://images.pexels.com/photos/1333746/pexels-photo-1333746.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -149,7 +144,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                        srcSet="https://images.pexels.com/photos/4079522/pexels-photo-4079522.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -160,7 +155,7 @@ export default function Index() {
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                        srcSet="https://images.pexels.com/photos/397913/pexels-photo-397913.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
@@ -168,19 +163,19 @@ export default function Index() {
                       />
                     </div>
                   </div>
-                  <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                  {/* <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                     <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
-                        srcSet="https://images.pexels.com/photos/4676441/pexels-photo-4676441.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
+                        srcSet="https://images.pexels.com/photos/4079522/pexels-photo-4079522.jpeg?auto=compress&cs=tinysrgb&w=440 768w,
                                 data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E 1w"
                         sizes="(min-width: 768px) 224px,
                                (max-width: 767px) 1px"
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

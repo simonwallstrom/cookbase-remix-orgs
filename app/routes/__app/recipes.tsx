@@ -1,6 +1,7 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Form, Link, useLoaderData, useSearchParams, useSubmit } from '@remix-run/react'
 import { ImageSquare } from 'phosphor-react'
+import { ButtonLink } from '~/components/Button'
 import Pagination from '~/components/Pagination'
 import { getRecipeCount, getRecipes } from '~/models/recipe.server'
 import { getTagsByOrganizationId } from '~/models/tag.server'
@@ -66,35 +67,46 @@ export default function Recipes() {
 
       {/* Recipe grid */}
       <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-2">
-        {recipes.map((recipe) => (
-          <Link
-            to={recipe.id}
-            key={recipe.id}
-            className="box group overflow-hidden transition-colors hover:bg-gray-50"
-          >
-            {recipe.imgUrl ? (
-              <img
-                className="aspect-[2/1] border-b border-black object-cover"
-                src={recipe.imgUrl}
-                alt=""
-              />
-            ) : (
-              <div className="flex aspect-[2/1] items-center justify-center border-b border-black bg-gray-200">
-                <ImageSquare size={36} className="text-gray-500" weight="duotone" />
-              </div>
-            )}
-            <div className="px-4 py-3">
-              <h4 className="line-clamp-1">{recipe.title}</h4>
-              <div className="flex gap-2">
-                {recipe.tags.map((tag) => (
-                  <div className="mt-0.5 rounded text-xs text-gray-600" key={tag.id}>
-                    {tag.title}
+        {recipes.length ? (
+          <>
+            {recipes.map((recipe) => (
+              <Link
+                to={recipe.id}
+                key={recipe.id}
+                className="box group overflow-hidden transition-colors hover:bg-gray-50"
+              >
+                {recipe.imgUrl ? (
+                  <img
+                    className="aspect-[2/1] border-b border-black object-cover"
+                    src={recipe.imgUrl}
+                    alt=""
+                  />
+                ) : (
+                  <div className="flex aspect-[2/1] items-center justify-center border-b border-black bg-gray-200">
+                    <ImageSquare size={36} className="text-gray-500" weight="duotone" />
                   </div>
-                ))}
-              </div>
-            </div>
-          </Link>
-        ))}
+                )}
+                <div className="px-4 py-3">
+                  <h4 className="line-clamp-1">{recipe.title}</h4>
+                  <div className="flex gap-2">
+                    {recipe.tags.map((tag) => (
+                      <div className="mt-0.5 rounded text-xs text-gray-600" key={tag.id}>
+                        {tag.title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </>
+        ) : (
+          <div className="box col-span-2 flex flex-col items-center gap-6 px-8 py-16">
+            <p className="text-base">You don't have any recipes just yet.</p>
+            <ButtonLink variant="primary" href="/recipes/new">
+              Create your first recipe →
+            </ButtonLink>
+          </div>
+        )}
       </div>
 
       <Pagination totalCount={filteredCount} currentPage={currentPage} />
