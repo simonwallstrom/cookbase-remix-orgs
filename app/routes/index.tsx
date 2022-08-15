@@ -15,7 +15,7 @@ export default function Index() {
   return (
     <div className="flex flex-1">
       {/* Content */}
-      <div className="flex flex-1 items-center bg-yellow-300">
+      <div className="flex flex-1 items-center">
         <div className="flex flex-1 items-center justify-center p-6">
           <div className="w-full max-w-xs space-y-8 text-center">
             <div>
@@ -55,7 +55,7 @@ export default function Index() {
                 <Button className="w-full" size="lg" variant="primary">
                   Signup to get started
                 </Button>
-                <ButtonLink className="w-full" size="lg" href="/login">
+                <ButtonLink className="w-full" variant="secondary" size="lg" href="/login">
                   Login to continue
                 </ButtonLink>
               </div>

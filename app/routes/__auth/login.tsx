@@ -159,7 +159,7 @@ export default function LoginPage() {
         <div>
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <Button size="lg" variant="secondary" className="w-full" type="submit">
-            Login
+            Login to continue
           </Button>
         </div>
       </Form>
