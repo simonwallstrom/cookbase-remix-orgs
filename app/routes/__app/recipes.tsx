@@ -37,7 +37,7 @@ export default function Recipes() {
         <h1>Recipes ({totalCount})</h1>
         <Link
           to="new"
-          className="rounded-md border border-black bg-yellow-300 py-2 px-4 font-medium text-black shadow-flat hover:bg-yellow-400"
+          className="rounded-md border border-black bg-yellow-300 py-2 px-4 font-medium text-black hover:bg-yellow-400"
         >
           + Add recipe
         </Link>
@@ -66,23 +66,19 @@ export default function Recipes() {
       ) : null}
 
       {/* Recipe grid */}
-      <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-2">
+      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8">
         {recipes.length ? (
           <>
             {recipes.map((recipe) => (
               <Link
                 to={recipe.id}
                 key={recipe.id}
-                className="box group overflow-hidden transition-colors hover:bg-gray-50"
+                className="box group overflow-hidden transition-all hover:border-gray-300 hover:shadow"
               >
                 {recipe.imgUrl ? (
-                  <img
-                    className="aspect-[2/1] border-b border-black object-cover"
-                    src={recipe.imgUrl}
-                    alt=""
-                  />
+                  <img className="aspect-[2/1] border-b object-cover" src={recipe.imgUrl} alt="" />
                 ) : (
-                  <div className="flex aspect-[2/1] items-center justify-center border-b border-black bg-gray-200">
+                  <div className="flex aspect-[2/1] items-center justify-center border-b bg-gray-50">
                     <ImageSquare size={36} className="text-gray-500" weight="duotone" />
                   </div>
                 )}

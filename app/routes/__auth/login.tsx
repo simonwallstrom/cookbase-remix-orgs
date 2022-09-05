@@ -124,7 +124,7 @@ export default function LoginPage() {
             autoComplete="email"
             aria-invalid={actionData?.errors?.email ? true : undefined}
             aria-describedby="email-error"
-            className="auth-input"
+            className="input !px-4 !py-3"
           />
           {actionData?.errors?.email && (
             <div className="pt-1 text-red-700" id="email-error">
@@ -147,7 +147,7 @@ export default function LoginPage() {
             autoComplete="current-password"
             aria-invalid={actionData?.errors?.password ? true : undefined}
             aria-describedby="password-error"
-            className="auth-input"
+            className="input !px-4 !py-3"
           />
           {actionData?.errors?.password && (
             <div className="pt-1 text-red-700" id="password-error">
@@ -158,7 +158,7 @@ export default function LoginPage() {
 
         <div>
           <input type="hidden" name="redirectTo" value={redirectTo} />
-          <Button size="lg" variant="secondary" className="w-full" type="submit">
+          <Button size="lg" variant="primary" className="w-full" type="submit">
             Login to continue
           </Button>
         </div>

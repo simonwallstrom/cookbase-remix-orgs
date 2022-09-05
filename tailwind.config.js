@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -9,12 +10,11 @@ module.exports = {
         sm: ['0.875rem', { lineHeight: '1.25rem' }],
       },
       fontFamily: {
-        sans: ['Recursive', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter Var', ...defaultTheme.fontFamily.sans],
+        serif: ['IBM Plex Serif', ...defaultTheme.fontFamily.serif],
       },
-      boxShadow: {
-        'flat-sm': '1px 1px 0 #000',
-        flat: '2px 2px 0 #000',
-        'flat-lg': '4px 4px 0 #000',
+      colors: {
+        gray: colors.zinc,
       },
     },
   },

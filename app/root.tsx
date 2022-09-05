@@ -23,7 +23,7 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   return (
-    <html className="h-full min-h-full bg-gray-100" lang="en">
+    <html className="h-full min-h-full" lang="en">
       <head>
         <Meta />
         <Links />

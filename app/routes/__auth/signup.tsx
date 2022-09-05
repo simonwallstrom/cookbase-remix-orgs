@@ -111,7 +111,7 @@ export default function SignUp() {
             </svg>
           </Link>
         </div>
-        <h2 className="text-xl font-normal text-gray-900">
+        <h2 className="font-serif text-xl font-normal leading-normal text-gray-900">
           Welcome to Cookbase. Create an account to get started.
         </h2>
       </div>
@@ -132,7 +132,7 @@ export default function SignUp() {
             autoComplete="account"
             aria-invalid={actionData?.errors?.account ? true : undefined}
             aria-describedby="account-error"
-            className="auth-input"
+            className="input !px-4 !py-3"
           />
           {actionData?.errors?.account && (
             <div className="pt-1 text-red-700" id="account-error">
@@ -156,7 +156,7 @@ export default function SignUp() {
             autoComplete="email"
             aria-invalid={actionData?.errors?.email ? true : undefined}
             aria-describedby="email-error"
-            className="auth-input"
+            className="input !px-4 !py-3"
           />
           {actionData?.errors?.email && (
             <div className="pt-1 text-red-700" id="email-error">
@@ -179,7 +179,7 @@ export default function SignUp() {
             autoComplete="new-password"
             aria-invalid={actionData?.errors?.password ? true : undefined}
             aria-describedby="password-error"
-            className="auth-input"
+            className="input !px-4 !py-3"
           />
           {actionData?.errors?.password && (
             <div className="pt-1 text-red-700" id="password-error">
@@ -189,7 +189,7 @@ export default function SignUp() {
         </div>
 
         <div>
-          <Button size="lg" variant="secondary" className="w-full" type="submit">
+          <Button size="lg" variant="primary" className="w-full" type="submit">
             Create account
           </Button>
         </div>

@@ -1,6 +1,6 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
-import { Button, ButtonLink } from '~/components/Button'
+import { ButtonLink } from '~/components/Button'
 import { getUserId } from '~/utils/session.server'
 
 export async function loader({ request }: LoaderArgs) {
@@ -47,21 +47,23 @@ export default function Index() {
                 </svg>
               </Link>
             </div>
-            <h2 className="text-xl font-normal text-gray-900">
-              Create, share and organize your favorite recipes.
+            <h2 className="font-serif text-xl font-normal leading-normal text-gray-900">
+              Create, share and organize
+              <br />
+              your favorite recipes.
             </h2>
             {!user ? (
               <div className="flex flex-col items-center justify-center space-y-5">
-                <Button className="w-full" size="lg" variant="primary">
+                <ButtonLink href="/signup" className="w-full" size="lg" variant="primary">
                   Signup to get started
-                </Button>
+                </ButtonLink>
                 <ButtonLink className="w-full" variant="secondary" size="lg" href="/login">
                   Login to continue
                 </ButtonLink>
               </div>
             ) : (
               <div className="flex">
-                <ButtonLink className="w-full" size="lg" href="/recipes">
+                <ButtonLink className="w-full" variant="primary" size="lg" href="/recipes">
                   Go to recipes
                 </ButtonLink>
               </div>
@@ -71,7 +73,7 @@ export default function Index() {
       </div>
 
       {/* Images */}
-      <div className="relative hidden flex-1 items-center justify-center overflow-hidden border-l-2 border-black bg-pink-300 md:block">
+      <div className="relative hidden flex-1 items-center justify-center overflow-hidden bg-gray-200 md:block">
         <div className="w-full ">
           <div className="mt-10">
             <div
@@ -81,7 +83,7 @@ export default function Index() {
               <div className="absolute top-1/2 -translate-y-1/2 rotate-12 sm:translate-x-8 lg:translate-x-6">
                 <div className="flex items-center space-x-6 lg:space-x-12">
                   <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-12">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -92,7 +94,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -105,7 +107,7 @@ export default function Index() {
                     </div>
                   </div>
                   <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-12">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -116,7 +118,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -127,7 +129,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -140,7 +142,7 @@ export default function Index() {
                     </div>
                   </div>
                   <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -151,7 +153,7 @@ export default function Index() {
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
@@ -164,7 +166,7 @@ export default function Index() {
                     </div>
                   </div>
                   {/* <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                    <div className="h-96 w-56 overflow-hidden rounded-lg border border-black shadow-flat">
+                    <div className="h-96 w-56 overflow-hidden rounded-2xl shadow-xl">
                       <img
                         alt="Recipe"
                         src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"

@@ -41,7 +41,7 @@ export default function Recipe() {
           </div>
         </div>
       </div>
-      <div className="box mt-6 overflow-hidden md:mt-8">
+      <div className="mt-6 overflow-hidden md:mt-8">
         {data.imgUrl ? (
           <img
             className="aspect-[2/1] w-full border-b border-black object-cover"
@@ -49,7 +49,7 @@ export default function Recipe() {
             alt=""
           />
         ) : null}
-        <div className="p-6 md:p-8">
+        <div>
           <h1>{data.title}</h1>
           <div className="mt-2 flex flex-col gap-3.5 border-b-2 border-black pb-6 md:pb-8">
             <div className="flex items-center gap-2">
