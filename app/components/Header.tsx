@@ -3,7 +3,7 @@ import { Link, NavLink } from '@remix-run/react'
 export default function Header() {
   return (
     <header className="sticky top-0 z-10 border-b bg-white px-4 shadow-sm md:px-8">
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-10">
+      <div className="mx-auto flex w-full max-w-4xl items-center justify-between gap-10">
         <div>
           <Link className="flex" to="/">
             <svg

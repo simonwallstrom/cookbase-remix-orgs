@@ -33,14 +33,11 @@ export default function Recipes() {
 
   return (
     <div>
-      <div className="flex items-end justify-between">
+      <div className="flex items-center justify-between">
         <h1>Recipes ({totalCount})</h1>
-        <Link
-          to="new"
-          className="rounded-md border border-black bg-yellow-300 py-2 px-4 font-medium text-black hover:bg-yellow-400"
-        >
-          + Add recipe
-        </Link>
+        <ButtonLink variant="primary" href="/recipes/new">
+          Add recipe
+        </ButtonLink>
       </div>
 
       {/* Tag filter */}
@@ -96,7 +93,7 @@ export default function Recipes() {
             ))}
           </>
         ) : (
-          <div className="box col-span-2 flex flex-col items-center gap-6 px-8 py-16">
+          <div className="box flex flex-col items-center gap-6 px-8 py-16">
             <p className="text-base">You don't have any recipes just yet.</p>
             <ButtonLink variant="primary" href="/recipes/new">
               Create your first recipe →

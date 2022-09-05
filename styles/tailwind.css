@@ -36,7 +36,7 @@
   h2,
   h3,
   h4 {
-    @apply font-serif font-medium;
+    @apply font-serif font-medium text-gray-900;
   }
 
   h1 {
@@ -59,12 +59,8 @@
     @apply font-medium text-gray-900;
   }
 
-  .input {
-    @apply block w-full rounded-lg border-gray-300 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:ring-0;
-  }
-
   input[type='checkbox'] {
-    @apply rounded border-black text-pink-600 focus:ring-pink-600;
+    @apply rounded border-black text-black focus:ring-black;
   }
 }
 
@@ -73,12 +69,16 @@
    - Prefix all component styles with cb-(cookbase)
 ---------------------------------------------------------------------------- */
 @layer components {
+  .input {
+    @apply block w-full max-w-md rounded-lg border-gray-300 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:ring-0;
+  }
+
   .box {
     @apply rounded-xl border bg-white shadow-sm;
   }
 
   .text-link {
-    @apply text-pink-600 underline-offset-2 hover:underline;
+    @apply text-gray-900 underline underline-offset-2 hover:no-underline;
   }
 
   .text-link--danger {

@@ -53,7 +53,7 @@ export default function NewTag() {
               Title
             </label>
             <input
-              className="w-full"
+              className="input w-full"
               placeholder="Smash burger..."
               type="text"
               name="title"
@@ -64,8 +64,8 @@ export default function NewTag() {
 
           {/* Submit button */}
           <div className="mt-6 flex gap-8">
-            <Button variant="secondary" type="submit">
-              Save tag
+            <Button variant="primary" type="submit">
+              Create tag
             </Button>
             <ButtonLink href="/tags">Cancel</ButtonLink>
           </div>

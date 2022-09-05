@@ -28,7 +28,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="flex min-h-full flex-col text-sm text-gray-900 selection:bg-yellow-200">
+      <body className="flex min-h-full flex-col text-sm text-gray-700 selection:bg-yellow-200">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

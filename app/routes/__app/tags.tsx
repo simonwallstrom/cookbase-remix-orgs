@@ -43,30 +43,30 @@ export default function Tags() {
 
   return (
     <div>
-      <div className="flex items-end justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <h1>Tags</h1>
         </div>
         <ButtonLink variant="secondary" href="new">
-          + Add tag
+          Add tag
         </ButtonLink>
       </div>
       {data.length ? (
-        <div className="box mt-8 divide-y divide-dashed divide-black p-8">
+        <div className="box mt-8 divide-y divide-dashed p-8">
           <div className="mb-6">
             <h2>Manage tags</h2>
-            <p>Tags let you group recipes together for easy access.</p>
+            <p className="mt-2">Tags let you group recipes together for easy access.</p>
           </div>
           {data.map((tag) => (
             <div className="flex justify-between py-3" key={tag.id}>
-              <h4>
+              <p>
                 {tag.title}{' '}
                 {tag._count.recipes > 0 ? (
                   <button className="text-link">({tag._count.recipes})</button>
                 ) : (
-                  <span className="text-gray-500">({tag._count.recipes})</span>
+                  <span className="text-gray-400">({tag._count.recipes})</span>
                 )}
-              </h4>
+              </p>
               <div className="flex gap-4">
                 <button className="text-link">Edit</button>
                 <button className="text-link">Delete</button>
@@ -75,10 +75,10 @@ export default function Tags() {
           ))}
         </div>
       ) : (
-        <div className="box mt-8 flex flex-col items-center px-8 py-16">
+        <div className="box mt-8 flex flex-col items-center gap-6 px-8 py-16">
           <p className="text-base">You don't have any tags just yet.</p>
           <ButtonLink variant="primary" href="/tags/new">
-            Create your first tag →
+            Create your first tag
           </ButtonLink>
         </div>
       )}

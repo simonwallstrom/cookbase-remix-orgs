@@ -34,7 +34,7 @@ const getSize = (size: BaseProps['size']) => {
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonAsButton>(function Button(
-  { variant = 'default', size = 'md', className, children, ...buttonProps },
+  { variant = 'secondary', size = 'md', className, children, ...buttonProps },
   ref: any
 ) {
   return (
@@ -50,7 +50,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonAsButton>(functi
 
 export const ButtonLink: React.FunctionComponent<ButtonAsLink> = ({
   children,
-  variant = 'default',
+  variant = 'secondary',
   size = 'md',
   href,
   className,

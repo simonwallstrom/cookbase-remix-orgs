@@ -14,7 +14,7 @@ export default function AppLayout() {
     <>
       <Header />
       <div className="px-4 pt-6 pb-36 md:px-8 md:pt-8">
-        <div className="mx-auto w-full max-w-5xl">
+        <div className="mx-auto w-full max-w-4xl">
           <Outlet />
         </div>
       </div>

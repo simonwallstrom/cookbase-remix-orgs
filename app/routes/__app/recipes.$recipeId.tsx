@@ -1,6 +1,6 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { ArrowFatLeft, DotsThreeOutline, Pencil } from 'phosphor-react'
+import { ArrowFatLeft, ArrowLeft, DotsThreeOutline, Pencil, PencilSimple } from 'phosphor-react'
 import invariant from 'tiny-invariant'
 import { Button, ButtonLink } from '~/components/Button'
 import { getRecipe } from '~/models/recipe.server'
@@ -25,23 +25,23 @@ export default function Recipe() {
       <div className="flex items-center justify-between">
         <div>
           <ButtonLink href="/recipes">
-            <ArrowFatLeft weight="duotone" size={20} />
+            <ArrowLeft size={16} />
             <span>Back to app</span>
           </ButtonLink>
         </div>
         <div className="flex items-center gap-3">
           <ButtonLink href="/recipes">
-            <Pencil weight="duotone" size={20} />
+            <PencilSimple size={16} />
             <span>Edit</span>
           </ButtonLink>
           <div>
             <Button>
-              <DotsThreeOutline weight="duotone" size={20} />
+              <DotsThreeOutline size={20} />
             </Button>
           </div>
         </div>
       </div>
-      <div className="mt-6 overflow-hidden md:mt-8">
+      <div className="mt-6 overflow-hidden md:mt-12">
         {data.imgUrl ? (
           <img
             className="aspect-[2/1] w-full border-b border-black object-cover"
@@ -50,8 +50,8 @@ export default function Recipe() {
           />
         ) : null}
         <div>
-          <h1>{data.title}</h1>
-          <div className="mt-2 flex flex-col gap-3.5 border-b-2 border-black pb-6 md:pb-8">
+          <h1 className="text-3xl">{data.title}</h1>
+          <div className="mt-2 flex flex-col gap-3.5 border-b border-dashed pb-6 md:pb-8">
             <div className="flex items-center gap-2">
               <div>
                 Simon <span className="text-gray-500">created this recipe</span> 7 days ago
@@ -68,7 +68,7 @@ export default function Recipe() {
           </div>
           <div
             dangerouslySetInnerHTML={{ __html: data.content }}
-            className="tiptap mt-4 md:mt-6"
+            className="tiptap mt-4 max-w-xl md:mt-6"
           ></div>
         </div>
       </div>
