@@ -45,7 +45,7 @@ export default function NewTag() {
           <span>Back to app</span>
         </ButtonLink>
       </div>
-      <div className="box mt-8 overflow-hidden p-8">
+      <div className="mt-8 overflow-hidden p-8">
         <Form method="post">
           {/* Title */}
           <div className="space-y-1.5">

@@ -37,7 +37,7 @@ export async function action({ request }: ActionArgs) {
   return tags
 }
 
-export default function Tags() {
+export default function Collections() {
   const data = useLoaderData<typeof loader>()
   console.log(data)
 
@@ -45,14 +45,14 @@ export default function Tags() {
     <div>
       <div className="flex items-center justify-between">
         <div>
-          <h1>Tags</h1>
+          <h1>Collections</h1>
         </div>
         <ButtonLink variant="secondary" href="new">
           Add tag
         </ButtonLink>
       </div>
       {data.length ? (
-        <div className="box mt-8 divide-y divide-dashed p-8">
+        <div className="mt-8 divide-y divide-gray-100">
           <div className="mb-6">
             <h2>Manage tags</h2>
             <p className="mt-2">Tags let you group recipes together for easy access.</p>
@@ -75,7 +75,7 @@ export default function Tags() {
           ))}
         </div>
       ) : (
-        <div className="box mt-8 flex flex-col items-center gap-6 px-8 py-16">
+        <div className="mt-8 flex flex-col items-center gap-6 px-8 py-16">
           <p className="text-base">You don't have any tags just yet.</p>
           <ButtonLink variant="primary" href="/tags/new">
             Create your first tag

@@ -54,7 +54,7 @@ export default function Recipes() {
             ))}
           </>
         ) : (
-          <div className="box flex flex-col items-center gap-6 px-8 py-16">
+          <div className="flex flex-col items-center gap-6 px-8 py-16">
             <p className="text-base">You don't have any recipes just yet.</p>
             <ButtonLink variant="primary" href="/recipes/new">
               Create your first recipe →

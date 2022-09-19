@@ -59,7 +59,7 @@ export default function NewRecipe() {
           <span>Back to app</span>
         </ButtonLink>
       </div>
-      <div className="box mt-8 overflow-hidden p-16">
+      <div className="mt-8 overflow-hidden p-16">
         <Form method="post">
           {/* Upload image */}
           <div className="flex flex-col items-center justify-center space-y-1.5 rounded-lg border border-dashed border-black px-4 py-10">

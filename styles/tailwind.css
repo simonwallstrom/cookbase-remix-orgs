@@ -7,31 +7,6 @@
    - Global styles for HTML tag selectors
 ---------------------------------------------------------------------------- */
 @layer base {
-  @font-face {
-    font-family: 'Inter var';
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: normal;
-    font-named-instance: 'Regular';
-    src: url('/fonts/Inter-roman.var.woff2?v=3.19') format('woff2');
-  }
-
-  @font-face {
-    font-family: 'IBM Plex Serif';
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
-    src: url('/fonts/IBMPlexSerif-Regular.woff2') format('woff2');
-  }
-
-  @font-face {
-    font-family: 'IBM Plex Serif';
-    font-weight: 500;
-    font-display: swap;
-    font-style: normal;
-    src: url('/fonts/IBMPlexSerif-Medium.woff2') format('woff2');
-  }
-
   h1,
   h2,
   h3,
@@ -51,10 +26,6 @@
     @apply text-base;
   }
 
-  hr {
-    @apply border-black;
-  }
-
   .label {
     @apply font-medium text-gray-900;
   }
@@ -71,10 +42,6 @@
 @layer components {
   .input {
     @apply block w-full max-w-md rounded-lg border-gray-300 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:ring-0;
-  }
-
-  .box {
-    @apply rounded-xl border bg-white shadow-sm;
   }
 
   .text-link {

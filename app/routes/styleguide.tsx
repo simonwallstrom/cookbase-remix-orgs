@@ -11,7 +11,7 @@ export default function Styleguide() {
             <span>Back to app</span>
           </ButtonLink>
         </div>
-        <div className="box mt-8 p-12">
+        <div className="mt-8 p-12">
           <h1>Design system</h1>
           <p className="mt-2">
             A collection of design resources, reusable components and guidelines.

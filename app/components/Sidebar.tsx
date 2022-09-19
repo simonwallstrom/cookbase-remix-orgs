@@ -1,5 +1,5 @@
-import { Books, Clock, MagnifyingGlass, Plus, Star } from 'phosphor-react'
-import { NavLink } from '@remix-run/react'
+import { Books, Clock, MagnifyingGlass, Plus, SquaresFour, Star } from 'phosphor-react'
+import { Link, NavLink } from '@remix-run/react'
 import { Button, ButtonLink } from './Button'
 
 export default function Sidebar() {
@@ -13,7 +13,7 @@ export default function Sidebar() {
   if (!user) return null
 
   return (
-    <nav className="sticky top-0 hidden h-screen w-72 flex-col border-r px-8 py-5 lg:flex">
+    <nav className="sticky top-0 hidden h-screen w-72 flex-col border-r px-6 py-5 lg:flex">
       <div className="flex-1">
         <CustomNavLink to={`/settings/`}>
           <div className="flex items-center space-x-3">
@@ -45,9 +45,7 @@ export default function Sidebar() {
           </Button>
         </div>
 
-        <div className="mt-6 mb-3 px-3 font-mono text-xs tracking-tight text-gray-500">Recipes</div>
-
-        <div className="flex-1 space-y-0.5">
+        <div className="mt-5 flex-1 space-y-0.5">
           <CustomNavLink to="/recipes">
             <Books weight="duotone" size={20} />
             <span>All recipes</span>
@@ -62,8 +60,16 @@ export default function Sidebar() {
           </CustomNavLink>
         </div>
 
-        <div className="mt-6 mb-3 px-3 font-mono text-xs tracking-tight text-gray-500">
-          Collections
+        <div className="mt-5 mb-3 flex items-center justify-between px-3 text-gray-500">
+          <Link to="/collections" className="font-mono text-xs tracking-tight hover:text-gray-900">
+            Collections
+          </Link>
+          <Link
+            className="rounded-md p-1 hover:bg-gray-200 hover:text-gray-900"
+            to="/collections/new"
+          >
+            <Plus size={14} />
+          </Link>
         </div>
 
         <div className="flex-1 space-y-0.5">
