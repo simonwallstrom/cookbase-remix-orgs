@@ -50,7 +50,7 @@ export default function Recipe() {
           />
         ) : null}
         <div>
-          <h1 className="text-3xl">{data.title}</h1>
+          <h1>{data.title}</h1>
           <div className="mt-2 flex flex-col gap-3.5 border-b border-dashed pb-6 md:pb-8">
             <div className="flex items-center gap-2">
               <div>

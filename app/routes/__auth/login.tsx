@@ -103,7 +103,9 @@ export default function LoginPage() {
           </Link>
         </div>
         <h2 className="text-xl font-normal text-gray-900">
-          Welcome back. Login and continue cooking.
+          Welcome back.
+          <br />
+          Login to continue cooking.
         </h2>
       </div>
       {/* Login form */}

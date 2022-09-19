@@ -36,7 +36,7 @@
   h2,
   h3,
   h4 {
-    @apply font-serif font-medium text-gray-900;
+    @apply font-medium text-gray-800;
   }
 
   h1 {

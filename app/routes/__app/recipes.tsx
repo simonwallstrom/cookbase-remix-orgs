@@ -1,93 +1,54 @@
 import type { LoaderArgs } from '@remix-run/node'
-import { Form, Link, useLoaderData, useSearchParams, useSubmit } from '@remix-run/react'
-import { ImageSquare } from 'phosphor-react'
+import { Link, useLoaderData } from '@remix-run/react'
+import { ArrowRight, ImageSquare } from 'phosphor-react'
 import { ButtonLink } from '~/components/Button'
-import Pagination from '~/components/Pagination'
-import { getRecipeCount, getRecipes } from '~/models/recipe.server'
-import { getTagsByOrganizationId } from '~/models/tag.server'
+import { getRecipes } from '~/models/recipe.server'
 import { requireAuth } from '~/utils/session.server'
 
 export async function loader({ request }: LoaderArgs) {
   const { orgId } = await requireAuth(request)
+  const recipes = await getRecipes(orgId)
 
-  const url = new URL(request.url)
-  const tagFilter = url.searchParams.getAll('tag')
-  const pageFilter = url.searchParams.get('page')
-
-  const page = pageFilter ? parseInt(pageFilter) : undefined
-
-  const recipes = await getRecipes(orgId, tagFilter, page)
-  const { totalCount, filteredCount } = await getRecipeCount(orgId, tagFilter)
-  const tags = await getTagsByOrganizationId(orgId)
-
-  return { recipes, totalCount, filteredCount, tags }
+  return { recipes }
 }
 
 export default function Recipes() {
-  const { recipes, totalCount, filteredCount, tags } = useLoaderData<typeof loader>()
-  const submit = useSubmit()
-  const [searchParams] = useSearchParams()
-  const tagParams = searchParams.getAll('tag')
-  const pageParams = searchParams.get('page')
-  const currentPage = pageParams ? parseInt(pageParams) : 1
+  const { recipes } = useLoaderData<typeof loader>()
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1>Recipes ({totalCount})</h1>
-        <ButtonLink variant="primary" href="/recipes/new">
-          Add recipe
-        </ButtonLink>
-      </div>
+      <h1>All recipes</h1>
+      <p className="mt-1">This is a list of all your recipes in alphabetic order.</p>
 
-      {/* Tag filter */}
-      {tags.length ? (
-        <Form className="box mt-8 flex items-center gap-4 p-4" method="get">
-          {tags.map((tag) => (
-            <div key={tag.id} className="flex items-center gap-2">
-              <input
-                checked={tagParams.includes(tag.title)}
-                onChange={(e) => submit(e.currentTarget.form)}
-                className="text-pink-600 focus:ring-pink-600"
-                type="checkbox"
-                id={tag.title}
-                name="tag"
-                value={tag.title}
-              />
-              <label htmlFor={tag.title}>
-                {tag.title} ({tag._count.recipes})
-              </label>
-            </div>
-          ))}
-        </Form>
-      ) : null}
-
-      {/* Recipe grid */}
-      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8">
+      <div className="mt-10 grid grid-cols-1 divide-y divide-gray-100 border-y border-gray-100">
         {recipes.length ? (
           <>
             {recipes.map((recipe) => (
               <Link
                 to={recipe.id}
                 key={recipe.id}
-                className="box group overflow-hidden transition-all hover:border-gray-300 hover:shadow"
+                className="group relative flex items-center gap-5 py-5"
               >
+                <span className="absolute -inset-x-5 -inset-y-px -z-10 rounded-2xl transition-colors group-hover:bg-gray-100"></span>
                 {recipe.imgUrl ? (
-                  <img className="aspect-[2/1] border-b object-cover" src={recipe.imgUrl} alt="" />
+                  <img className="h-16 w-16 rounded-xl object-cover" src={recipe.imgUrl} alt="" />
                 ) : (
-                  <div className="flex aspect-[2/1] items-center justify-center border-b bg-gray-50">
-                    <ImageSquare size={36} className="text-gray-500" weight="duotone" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-100">
+                    <ImageSquare size={20} className="text-gray-500" weight="duotone" />
                   </div>
                 )}
-                <div className="px-4 py-3">
+                <div className="flex-1">
                   <h4 className="line-clamp-1">{recipe.title}</h4>
-                  <div className="flex gap-2">
+                  <div className="flex gap-4">
                     {recipe.tags.map((tag) => (
-                      <div className="mt-0.5 rounded text-xs text-gray-600" key={tag.id}>
+                      <div className="mt-1 text-xs text-gray-500" key={tag.id}>
                         {tag.title}
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className="transition-transform group-hover:-translate-x-1">
+                  <ArrowRight />
                 </div>
               </Link>
             ))}
@@ -101,8 +62,6 @@ export default function Recipes() {
           </div>
         )}
       </div>
-
-      <Pagination totalCount={filteredCount} currentPage={currentPage} />
     </div>
   )
 }

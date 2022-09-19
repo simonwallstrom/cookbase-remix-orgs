@@ -37,19 +37,16 @@ export async function getRecipeCount(organizationId: Organization['id'], tagFilt
   return { totalCount, filteredCount }
 }
 
-export async function getRecipes(
-  organizationId: Organization['id'],
-  tagFilter: string[],
-  page?: number
-) {
-  const filter = getRecipeFilters(tagFilter)
+export async function getRecipes(organizationId: Organization['id'], page?: number) {
   const take = 100
   const skip = page ? take * (page - 1) : undefined
 
   return prisma.recipe.findMany({
     where: {
       organizationId,
-      ...filter,
+    },
+    orderBy: {
+      title: 'asc',
     },
     take: take,
     skip: skip,

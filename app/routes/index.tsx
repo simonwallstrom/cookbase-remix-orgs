@@ -47,7 +47,7 @@ export default function Index() {
                 </svg>
               </Link>
             </div>
-            <h2 className="font-serif text-xl font-normal leading-normal text-gray-900">
+            <h2 className="text-xl font-normal leading-normal text-gray-900">
               Create, share and organize
               <br />
               your favorite recipes.

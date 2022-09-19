@@ -1,6 +1,6 @@
 import { json, type LoaderArgs } from '@remix-run/node'
 import { Outlet } from '@remix-run/react'
-import Header from '~/components/Header'
+import Sidebar from '~/components/Sidebar'
 import { requireAuth } from '~/utils/session.server'
 
 export async function loader({ request }: LoaderArgs) {
@@ -11,13 +11,15 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function AppLayout() {
   return (
-    <>
-      <Header />
-      <div className="px-4 pt-6 pb-36 md:px-8 md:pt-8">
+    <div className="flex flex-1">
+      <Sidebar />
+      <main className="flex flex-1 flex-col px-6 py-6 lg:py-8 lg:px-12 xl:py-16">
         <div className="mx-auto w-full max-w-4xl">
           <Outlet />
         </div>
-      </div>
-    </>
+        {/* This <div> is only here in order to preserve the height of the fixed positioned mobile nav */}
+        <div className="h-16 lg:hidden"></div>
+      </main>
+    </div>
   )
 }

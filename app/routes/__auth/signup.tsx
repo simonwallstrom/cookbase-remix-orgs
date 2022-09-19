@@ -111,7 +111,7 @@ export default function SignUp() {
             </svg>
           </Link>
         </div>
-        <h2 className="font-serif text-xl font-normal leading-normal text-gray-900">
+        <h2 className="text-xl font-normal leading-normal text-gray-900">
           Welcome to Cookbase. Create an account to get started.
         </h2>
       </div>
