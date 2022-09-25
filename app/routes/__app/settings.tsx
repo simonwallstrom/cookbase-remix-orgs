@@ -22,8 +22,12 @@ export default function Settings() {
     <div>
       <h1>Settings</h1>
       <p className="mt-1">Manage your user and family account settings.</p>
-      <div className="mt-10 border-y border-gray-100">
-        <h2 className="mt-8">User settings</h2>
+
+      <hr className="my-10" />
+
+      {/* User settings */}
+      <div>
+        <h2>User settings</h2>
         <Form action="/logout" method="post">
           <div className="mt-2 flex justify-between">
             <span>
@@ -35,7 +39,11 @@ export default function Settings() {
           </div>
         </Form>
       </div>
-      <div className="mt-10">
+
+      <hr className="my-10" />
+
+      {/* Account settings */}
+      <div>
         <h2>Account settings</h2>
         <div className="mt-2 flex justify-between">
           <div>
@@ -45,10 +53,9 @@ export default function Settings() {
             <button className="text-link">Edit account name</button>
           </div>
         </div>
-        <hr className="my-6" />
-        <div>
+        <div className="mt-8 rounded-xl bg-gray-50 px-8 py-7">
           <h3>Members</h3>
-          <ol className="mt-2 list-inside list-disc">
+          <ol className="mt-3">
             {data.members?.map((member) => (
               <li key={member.email}>
                 {member.email}
@@ -68,7 +75,7 @@ export default function Settings() {
               value={`cookbase.fly.dev/invite/${data.invitation?.id}`}
               name="invite_link"
               id="invite_link"
-              className="w-full"
+              className="input w-full"
             />
             <p className="mt-1.5 text-xs text-gray-500">
               Share this link to allow others to join your account. Anyone with the link can join

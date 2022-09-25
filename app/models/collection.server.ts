@@ -1,8 +1,8 @@
 import type { Organization } from '@prisma/client'
 import { prisma } from '~/utils/prisma.server'
 
-export async function getTagsByOrganizationId(organizationId: Organization['id']) {
-  return prisma.tag.findMany({
+export async function getCollectionsByOrganizationId(organizationId: Organization['id']) {
+  return prisma.collection.findMany({
     where: { organizationId },
     include: {
       _count: {

@@ -5,7 +5,7 @@ function getRecipeFilters(input: string[]) {
   let filter: Prisma.RecipeWhereInput = {}
   if (input.length) {
     filter = {
-      tags: {
+      collections: {
         some: {
           title: {
             in: input,
@@ -50,7 +50,7 @@ export async function getRecipes(organizationId: Organization['id'], page?: numb
     },
     take: take,
     skip: skip,
-    include: { tags: true },
+    include: { collections: true },
   })
 }
 
@@ -63,6 +63,6 @@ export async function getRecipe({
 }) {
   return prisma.recipe.findFirst({
     where: { id, organizationId },
-    include: { tags: true },
+    include: { collections: true },
   })
 }

@@ -23,7 +23,11 @@
   }
 
   h3 {
-    @apply text-base;
+    @apply text-sm;
+  }
+
+  hr {
+    @apply border-gray-100;
   }
 
   .label {

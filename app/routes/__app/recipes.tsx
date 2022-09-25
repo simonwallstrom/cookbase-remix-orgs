@@ -1,9 +1,9 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
-import { ArrowRight, ImageSquare } from 'phosphor-react'
 import { ButtonLink } from '~/components/Button'
 import { getRecipes } from '~/models/recipe.server'
 import { requireAuth } from '~/utils/session.server'
+import { ArrowRight, ImageSquare, MagnifyingGlass, Plus } from 'phosphor-react'
 
 export async function loader({ request }: LoaderArgs) {
   const { orgId } = await requireAuth(request)
@@ -17,8 +17,18 @@ export default function Recipes() {
 
   return (
     <div>
-      <h1>All recipes</h1>
-      <p className="mt-1">This is a list of all your recipes in alphabetic order.</p>
+      <div className="flex items-center justify-between">
+        <h1>Recipes</h1>
+        <div className="flex gap-6">
+          <ButtonLink href="/">
+            <MagnifyingGlass />
+          </ButtonLink>
+          <ButtonLink variant="primary" href="/">
+            <Plus />
+            <span>Add recipe</span>
+          </ButtonLink>
+        </div>
+      </div>
 
       <div className="mt-10 grid grid-cols-1 divide-y divide-gray-100 border-y border-gray-100">
         {recipes.length ? (
@@ -34,21 +44,21 @@ export default function Recipes() {
                   <img className="h-16 w-16 rounded-xl object-cover" src={recipe.imgUrl} alt="" />
                 ) : (
                   <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-100">
-                    <ImageSquare size={20} className="text-gray-500" weight="duotone" />
+                    <ImageSquare className="text-gray-500" />
                   </div>
                 )}
                 <div className="flex-1">
                   <h4 className="line-clamp-1">{recipe.title}</h4>
                   <div className="flex gap-4">
-                    {recipe.tags.map((tag) => (
-                      <div className="mt-1 text-xs text-gray-500" key={tag.id}>
-                        {tag.title}
+                    {recipe.collections.map((collection) => (
+                      <div className="mt-1 text-xs text-gray-500" key={collection.id}>
+                        {collection.title}
                       </div>
                     ))}
                   </div>
                 </div>
                 <div className="transition-transform group-hover:-translate-x-1">
-                  <ArrowRight />
+                  <ArrowRight className="w-4" />
                 </div>
               </Link>
             ))}

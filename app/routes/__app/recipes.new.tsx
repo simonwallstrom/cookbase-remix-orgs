@@ -3,7 +3,7 @@ import { Form, useActionData, useLoaderData } from '@remix-run/react'
 import { ArrowFatLeft, ImageSquare } from 'phosphor-react'
 import { z } from 'zod'
 import Tiptap from '~/components/Tiptap'
-import { getTagsByOrganizationId } from '~/models/tag.server'
+import { getCollectionsByOrganizationId } from '~/models/collection.server'
 import { requireAuth } from '~/utils/session.server'
 import { getParams } from 'remix-params-helper'
 import { prisma } from '~/utils/prisma.server'
@@ -12,7 +12,7 @@ import { recipeTemplate } from '~/utils/recipeTemplate'
 
 export async function loader({ request }: LoaderArgs) {
   const { orgId } = await requireAuth(request)
-  const tags = await getTagsByOrganizationId(orgId)
+  const tags = await getCollectionsByOrganizationId(orgId)
 
   return tags
 }
@@ -37,7 +37,7 @@ export async function action({ request }: ActionArgs) {
       organization: {
         connect: { id: orgId },
       },
-      tags: {
+      collections: {
         connect: result.data.tag?.map((id) => ({ id: id })),
       },
     },

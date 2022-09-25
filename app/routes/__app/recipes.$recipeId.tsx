@@ -1,6 +1,6 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { ArrowFatLeft, ArrowLeft, DotsThreeOutline, Pencil, PencilSimple } from 'phosphor-react'
+import { ArrowLeft, DotsThreeOutline, PencilSimple } from 'phosphor-react'
 import invariant from 'tiny-invariant'
 import { Button, ButtonLink } from '~/components/Button'
 import { getRecipe } from '~/models/recipe.server'
@@ -26,7 +26,7 @@ export default function Recipe() {
         <div>
           <ButtonLink href="/recipes">
             <ArrowLeft size={16} />
-            <span>Back to app</span>
+            <span>Back to recipes</span>
           </ButtonLink>
         </div>
         <div className="flex items-center gap-3">
@@ -43,11 +43,7 @@ export default function Recipe() {
       </div>
       <div className="mt-6 overflow-hidden md:mt-12">
         {data.imgUrl ? (
-          <img
-            className="aspect-[2/1] w-full border-b border-black object-cover"
-            src={data.imgUrl}
-            alt=""
-          />
+          <img className="aspect-[2/1] w-full object-cover" src={data.imgUrl} alt="" />
         ) : null}
         <div>
           <h1>{data.title}</h1>
@@ -58,10 +54,9 @@ export default function Recipe() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              {/* <div className="text-xs uppercase tracking-wider text-gray-500">Tags:</div> */}
-              {data.tags.map((tag) => (
-                <div className="rounded-full bg-gray-200 px-1.5 py-0.5 text-xs" key={tag.id}>
-                  {tag.title}
+              {data.collections.map((collection) => (
+                <div className="rounded-full bg-gray-200 px-1.5 py-0.5 text-xs" key={collection.id}>
+                  {collection.title}
                 </div>
               ))}
             </div>
