@@ -28,8 +28,8 @@ const getVariant = (variant: BaseProps['variant']) => {
 }
 
 const getSize = (size: BaseProps['size']) => {
-  if (size === 'sm') return 'px-3.5 py-1.5 space-x-2'
-  if (size === 'md') return 'px-4 py-2 space-x-2.5'
+  if (size === 'sm') return 'px-3.5 py-1 space-x-2'
+  if (size === 'md') return 'px-4 py-1.5 space-x-2.5'
   if (size === 'lg') return 'px-8 py-3 space-x-3'
 }
 

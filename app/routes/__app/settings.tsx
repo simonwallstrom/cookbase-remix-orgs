@@ -21,7 +21,7 @@ export default function Settings() {
   return (
     <div>
       <h1>Settings</h1>
-      <p className="mt-1">Manage your user and family account settings.</p>
+      <p className="mt-2">Manage your user and family account settings.</p>
 
       <hr className="my-10" />
 

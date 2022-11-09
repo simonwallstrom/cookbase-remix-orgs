@@ -1,77 +1,120 @@
-import { useEditor, EditorContent, type Editor } from '@tiptap/react'
+import { BubbleMenu, useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import Placeholder from '@tiptap/extension-placeholder'
+import Document from '@tiptap/extension-document'
+import Paragraph from '@tiptap/extension-paragraph'
+import BulletList from '@tiptap/extension-bullet-list'
+import ListItem from '@tiptap/extension-list-item'
+import Text from '@tiptap/extension-text'
+
 import { ListBullets, ListNumbers, TextBolder, TextH, TextItalic } from 'phosphor-react'
 import { useState } from 'react'
 
-const MenuBar = ({ editor }: { editor: Editor | null }) => {
-  if (!editor) {
-    return null
-  }
+const CustomDocument = Document.extend({
+  content: 'bulletList',
+})
 
-  return (
-    <div className="flex items-center overflow-hidden rounded-t-md border-x border-t border-black">
-      <div className="flex gap-1 p-1">
-        <MenuButton
-          isActive={editor.isActive('bold')}
-          onClick={() => editor.chain().focus().toggleBold().run()}
-        >
-          <TextBolder weight="bold" />
-        </MenuButton>
-        <MenuButton
-          isActive={editor.isActive('italic')}
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-        >
-          <TextItalic weight="bold" />
-        </MenuButton>
-      </div>
-      <div className="flex gap-1 border-x border-black p-1">
-        <MenuButton
-          isActive={editor.isActive('heading')}
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        >
-          <TextH weight="bold" />
-        </MenuButton>
-        <MenuButton
-          isActive={editor.isActive('bulletList')}
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-        >
-          <ListBullets weight="bold" />
-        </MenuButton>
-        <MenuButton
-          isActive={editor.isActive('orderedList')}
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-        >
-          <ListNumbers weight="bold" />
-        </MenuButton>
-      </div>
-    </div>
-  )
-}
+const CustomBulletItem = ListItem.extend({
+  content: 'inline*',
+})
 
-const Tiptap = ({ content }: { content: string }) => {
+export const IngredientsInput = ({ content }: { content: string }) => {
   const [html, setHtml] = useState(content)
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: 'border border-black tiptap rounded-b-md p-4 outline-none',
+        class:
+          'tiptap-ingredients focus:border-black min-h-[150px] border rounded-lg p-4 outline-none leading-relaxed',
       },
     },
-    extensions: [
-      StarterKit,
-      Placeholder.configure({
-        placeholder: 'List items....',
-      }),
-    ],
+    editable: true,
+    extensions: [CustomDocument, Paragraph, Text, BulletList, CustomBulletItem],
     content: content,
-    onBlur({ editor }) {
+    onUpdate({ editor }) {
       setHtml(editor.getHTML())
     },
   })
 
   return (
     <div>
-      <MenuBar editor={editor} />
+      {editor && (
+        <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+          <div className="flex items-center gap-1 overflow-hidden rounded-md border border-gray-300 bg-white p-1 shadow-md">
+            <MenuButton
+              isActive={editor.isActive('bold')}
+              onClick={() => editor.chain().focus().toggleBold().run()}
+            >
+              <TextBolder size={16} weight="bold" />
+            </MenuButton>
+            <MenuButton
+              isActive={editor.isActive('italic')}
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+            >
+              <TextItalic size={16} weight="bold" />
+            </MenuButton>
+          </div>
+        </BubbleMenu>
+      )}
+      <EditorContent editor={editor} />
+      <input type="hidden" name="content" value={html} />
+    </div>
+  )
+}
+
+export const InstructionsInput = ({ content }: { content: string }) => {
+  const [html, setHtml] = useState(content)
+  const editor = useEditor({
+    editorProps: {
+      attributes: {
+        class:
+          'ingredients-input focus:border-black min-h-[150px] border rounded-lg px-4 py-3 outline-none leading-relaxed',
+      },
+    },
+    editable: true,
+    extensions: [StarterKit],
+    content: content,
+    onUpdate({ editor }) {
+      setHtml(editor.getHTML())
+    },
+  })
+
+  return (
+    <div>
+      {editor && (
+        <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+          <div className="flex items-center gap-1 overflow-hidden rounded-md border border-gray-300 bg-white p-1 shadow-md">
+            <MenuButton
+              isActive={editor.isActive('bold')}
+              onClick={() => editor.chain().focus().toggleBold().run()}
+            >
+              <TextBolder size={16} weight="bold" />
+            </MenuButton>
+            <MenuButton
+              isActive={editor.isActive('italic')}
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+            >
+              <TextItalic size={16} weight="bold" />
+            </MenuButton>
+            <MenuButton
+              isActive={editor.isActive('heading')}
+              onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+            >
+              <TextH size={16} weight="bold" />
+            </MenuButton>
+            <MenuButton
+              isActive={editor.isActive('bulletList')}
+              onClick={() => editor.chain().focus().toggleBulletList().run()}
+            >
+              <ListBullets size={16} weight="bold" />
+            </MenuButton>
+            <MenuButton
+              isActive={editor.isActive('orderedList')}
+              onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            >
+              <ListNumbers size={16} weight="bold" />
+            </MenuButton>
+          </div>
+        </BubbleMenu>
+      )}
       <EditorContent editor={editor} />
       <input type="hidden" name="content" value={html} />
     </div>
@@ -89,9 +132,7 @@ function MenuButton({
 }) {
   return (
     <button
-      className={`rounded p-1.5 hover:bg-gray-100 ${
-        isActive ? 'bg-gray-200 hover:bg-gray-200' : ''
-      }`}
+      className={`rounded p-2 hover:bg-gray-100 ${isActive ? 'bg-gray-200 hover:bg-gray-300' : ''}`}
       type="button"
       onClick={onClick}
     >
@@ -99,5 +140,3 @@ function MenuButton({
     </button>
   )
 }
-
-export default Tiptap

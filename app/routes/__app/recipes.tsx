@@ -1,36 +1,41 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 import { ButtonLink } from '~/components/Button'
-import { getRecipes } from '~/models/recipe.server'
 import { requireAuth } from '~/utils/session.server'
-import { ArrowRight, ImageSquare, MagnifyingGlass, Plus } from 'phosphor-react'
+import { ArrowRight, ImageSquare } from 'phosphor-react'
+import { prisma } from '~/utils/prisma.server'
 
 export async function loader({ request }: LoaderArgs) {
   const { orgId } = await requireAuth(request)
-  const recipes = await getRecipes(orgId)
 
-  return { recipes }
+  const recipes = await prisma.recipe.findMany({
+    where: {
+      organizationId: orgId,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+    include: { collections: true },
+  })
+
+  const recipesCount = await prisma.recipe.count({
+    where: {
+      organizationId: orgId,
+    },
+  })
+
+  return { recipes, recipesCount }
 }
 
 export default function Recipes() {
-  const { recipes } = useLoaderData<typeof loader>()
+  const { recipes, recipesCount } = useLoaderData<typeof loader>()
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
-        <h1>Recipes</h1>
-        <div className="flex gap-6">
-          <ButtonLink href="/">
-            <MagnifyingGlass />
-          </ButtonLink>
-          <ButtonLink variant="primary" href="/">
-            <Plus />
-            <span>Add recipe</span>
-          </ButtonLink>
-        </div>
-      </div>
+    <>
+      <h1>Recipes</h1>
+      <p className="mt-2">You have {recipesCount} recipes in your account.</p>
 
-      <div className="mt-10 grid grid-cols-1 divide-y divide-gray-100 border-y border-gray-100">
+      <div className="mt-6 divide-y divide-gray-100 border-y border-gray-100 md:mt-10">
         {recipes.length ? (
           <>
             {recipes.map((recipe) => (
@@ -48,7 +53,7 @@ export default function Recipes() {
                   </div>
                 )}
                 <div className="flex-1">
-                  <h4 className="line-clamp-1">{recipe.title}</h4>
+                  <h4 className="leading-tight line-clamp-2">{recipe.title}</h4>
                   <div className="flex gap-4">
                     {recipe.collections.map((collection) => (
                       <div className="mt-1 text-xs text-gray-500" key={collection.id}>
@@ -72,6 +77,6 @@ export default function Recipes() {
           </div>
         )}
       </div>
-    </div>
+    </>
   )
 }

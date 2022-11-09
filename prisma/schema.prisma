@@ -52,7 +52,8 @@ model Recipe {
   organization   Organization @relation(fields: [organizationId], references: [id])
   organizationId String
   title          String
-  content        String
+  ingredients    String?
+  instructions   String?
   imgUrl         String?
   collections    Collection[]
 }

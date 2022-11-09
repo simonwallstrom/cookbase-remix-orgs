@@ -13,8 +13,8 @@ export default function AppLayout() {
   return (
     <div className="flex flex-1">
       <Sidebar />
-      <main className="flex flex-1 flex-col px-6 py-6 lg:py-8 lg:px-12 xl:py-16">
-        <div className="mx-auto w-full max-w-4xl">
+      <main className="relative flex flex-1 flex-col px-6 py-6 lg:py-10 lg:px-12 xl:py-[4.7rem]">
+        <div className="mx-auto w-full max-w-3xl">
           <Outlet />
         </div>
         {/* This <div> is only here in order to preserve the height of the fixed positioned mobile nav */}

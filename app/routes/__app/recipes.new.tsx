@@ -1,137 +1,60 @@
-import { type ActionArgs, json, type LoaderArgs } from '@remix-run/node'
-import { Form, useActionData, useLoaderData } from '@remix-run/react'
-import { ArrowFatLeft, ImageSquare } from 'phosphor-react'
-import { z } from 'zod'
-import Tiptap from '~/components/Tiptap'
-import { getCollectionsByOrganizationId } from '~/models/collection.server'
-import { requireAuth } from '~/utils/session.server'
-import { getParams } from 'remix-params-helper'
-import { prisma } from '~/utils/prisma.server'
+import { Plus } from 'phosphor-react'
 import { Button, ButtonLink } from '~/components/Button'
-import { recipeTemplate } from '~/utils/recipeTemplate'
-
-export async function loader({ request }: LoaderArgs) {
-  const { orgId } = await requireAuth(request)
-  const tags = await getCollectionsByOrganizationId(orgId)
-
-  return tags
-}
-
-const recipeSchema = z.object({
-  title: z.string({ required_error: 'Title is required' }).min(1),
-  content: z.string(),
-  tag: z.array(z.string()).optional(),
-})
-
-export async function action({ request }: ActionArgs) {
-  const { orgId } = await requireAuth(request)
-  const result = getParams(await request.formData(), recipeSchema)
-  if (!result.success) {
-    return json(result.errors, { status: 400 })
-  }
-
-  let recipe = await prisma.recipe.create({
-    data: {
-      title: result.data.title,
-      content: result.data.content,
-      organization: {
-        connect: { id: orgId },
-      },
-      collections: {
-        connect: result.data.tag?.map((id) => ({ id: id })),
-      },
-    },
-  })
-
-  return recipe
-}
+import { IngredientsInput, InstructionsInput } from '~/components/Tiptap'
 
 export default function NewRecipe() {
-  const data = useLoaderData<typeof loader>()
-  const actionData = useActionData<typeof action>()
-  let content = recipeTemplate
-
   return (
-    <div>
-      <div className="flex">
-        <ButtonLink href="/recipes">
-          <ArrowFatLeft weight="duotone" size={20} />
-          <span>Back to app</span>
-        </ButtonLink>
-      </div>
-      <div className="mt-8 overflow-hidden p-16">
-        <Form method="post">
-          {/* Upload image */}
-          <div className="flex flex-col items-center justify-center space-y-1.5 rounded-lg border border-dashed border-black px-4 py-10">
-            <ImageSquare size={36} className="text-gray-500" weight="duotone" />
-            <label className="label" htmlFor="title">
-              Upload image
-            </label>
-            <div className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</div>
-          </div>
-
-          {/* Title */}
-          <div className="mt-8 space-y-1.5">
-            <label className="label" htmlFor="title">
-              Title
-            </label>
+    <div className="">
+      <div>
+        {/* Image upload */}
+        <div className="flex h-24 w-24 -rotate-3 items-center justify-center rounded-2xl border-2 border-dashed bg-gray-50 text-center text-xs leading-tight text-gray-500">
+          Upload
+          <br />
+          image
+        </div>
+        <div className="border-b border-gray-100 py-8">
+          <div className="">
             <input
-              className="input"
-              placeholder="Smash burger..."
               type="text"
               name="title"
+              autoFocus
               id="title"
+              className="input px-4 text-2xl font-medium text-gray-800 placeholder:text-gray-400"
+              placeholder="Recipe title..."
             />
-            <p className="text-xs text-gray-500">Give your recipe a descriptive title.</p>
-          </div>
-
-          {/* Tags */}
-          <div className="mt-6 space-y-1.5">
-            <label className="label">Tags</label>
-            <div className="space-y-1 rounded-md border border-dashed border-black p-4">
-              {data.map((tag) => (
-                <div key={tag.id} className="flex items-center gap-2">
-                  <input
-                    className="text-pink-600 focus:ring-pink-600"
-                    type="checkbox"
-                    id={tag.id}
-                    name="tag"
-                    value={tag.id}
-                  />
-                  <label className="font-normal" htmlFor={tag.id}>
-                    {tag.title} ({tag._count.recipes})
-                  </label>
-                </div>
-              ))}
+            <div className="mt-5 -ml-2 flex items-center gap-4">
+              <button className="flex items-center gap-1.5 rounded-md py-1 px-2 text-xs font-medium hover:bg-gray-100">
+                <Plus />
+                <span>Add to collection</span>
+              </button>
             </div>
-            <p className="text-xs text-gray-500">
-              Choose one or multiple tags for this recipe. You can create new tags on the
-              "Tags"-page.
-            </p>
           </div>
+        </div>
 
-          {/* Content editor */}
-          <div className="mt-6 space-y-1.5">
-            <label className="label">Content</label>
-            <div className="prose">
-              <Tiptap content={content} />
+        <div className="mt-7 flex gap-10">
+          <div className="w-[30%]">
+            <h2>Ingredients</h2>
+            <div className="mt-2">
+              <IngredientsInput
+                content={
+                  '<ul><li>Whole wheat flour</li><li>Kosher salt</li><li>1 package yeast</li></ul>'
+                }
+              />
             </div>
-            <p className="text-xs text-gray-500">
-              Add your ingredients and instructions. You can add basic formatting such as list items
-              and headings.
-            </p>
           </div>
-
-          <pre>{JSON.stringify(actionData, null, 2)}</pre>
-
-          {/* Submit button */}
-          <div className="mt-6 flex gap-8">
-            <Button variant="secondary" type="submit">
-              Save recipe
-            </Button>
-            <ButtonLink href="/recipes">Cancel</ButtonLink>
+          <div className="flex-1">
+            <h2>Instructions</h2>
+            <div className="mt-2">
+              <InstructionsInput content={'<p>Add your instructions...</p>'} />
+            </div>
           </div>
-        </Form>
+        </div>
+        <div className="mt-9 flex gap-6">
+          <Button variant="primary" type="submit">
+            Save recipe
+          </Button>
+          <ButtonLink href="/tags">Cancel</ButtonLink>
+        </div>
       </div>
     </div>
   )

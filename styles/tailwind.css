@@ -26,16 +26,12 @@
     @apply text-sm;
   }
 
+  strong {
+    @apply font-semibold;
+  }
+
   hr {
     @apply border-gray-100;
-  }
-
-  .label {
-    @apply font-medium text-gray-900;
-  }
-
-  input[type='checkbox'] {
-    @apply rounded border-black text-black focus:ring-black;
   }
 }
 
@@ -44,8 +40,16 @@
    - Prefix all component styles with cb-(cookbase)
 ---------------------------------------------------------------------------- */
 @layer components {
+  .label {
+    @apply font-medium text-gray-900;
+  }
+
   .input {
-    @apply block w-full max-w-md rounded-lg border-gray-300 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:ring-0;
+    @apply block w-full rounded-lg border-gray-200 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:ring-0;
+  }
+
+  .checkbox {
+    @apply rounded border-black text-black focus:ring-black;
   }
 
   .text-link {
@@ -70,16 +74,24 @@
    - The styles for rendering the content in the editor and on the recipe page
 ---------------------------------------------------------------------------- */
 
-.tiptap:first-child > * {
+.tiptap-ingredients ul {
+  @apply list-disc pl-4;
+}
+
+.tiptap-ingredients ul li {
+  @apply mb-1.5 leading-snug;
+}
+
+/* .tiptap > *:first-child {
   @apply mt-0;
 }
 
 .tiptap h2 {
-  @apply mb-2 mt-4;
+  @apply mb-3 mt-5 text-lg;
 }
 
 .tiptap p {
-  @apply my-2 leading-relaxed;
+  @apply my-3 leading-relaxed text-gray-900;
 }
 
 .tiptap ul li,
@@ -88,23 +100,15 @@
 }
 
 .tiptap ul {
-  @apply list-disc pl-3;
-}
-
-.tiptap ul li {
-  padding-inline-start: 14px;
+  @apply list-disc pl-4;
 }
 
 .tiptap ol {
-  @apply list-decimal pl-4;
+  @apply list-decimal pl-6;
 }
 
 .tiptap ol li {
-  padding-inline-start: 10px;
-}
-
-.tiptap ul li {
-  list-style-type: '→';
+  padding-inline-start: 5px;
 }
 
 .tiptap li p {
@@ -114,3 +118,15 @@
 .tiptap li::marker {
   @apply font-semibold text-gray-400;
 }
+
+.tiptap ol li {
+  padding-inline-start: 10px;
+}
+
+.tiptap li p {
+  @apply inline;
+}
+
+.tiptap li::marker {
+  @apply font-semibold text-gray-400;
+} */
