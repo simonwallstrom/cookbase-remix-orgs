@@ -7,15 +7,6 @@
    - Global styles for HTML tag selectors
 ---------------------------------------------------------------------------- */
 @layer base {
-  @font-face {
-    font-family: 'Recursive';
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: normal;
-    font-named-instance: 'Regular';
-    src: url('/Recursive.woff2') format('woff2');
-  }
-
   h1,
   h2,
   h3,
@@ -33,6 +24,11 @@
 
   h3 {
     @apply text-base;
+  }
+
+  a,
+  button {
+    @apply cursor-default;
   }
 
   hr {
@@ -69,7 +65,7 @@
 ---------------------------------------------------------------------------- */
 @layer components {
   .box {
-    @apply rounded-xl border border-black bg-white shadow-flat-sm;
+    @apply rounded-xl border;
   }
 
   .text-link {

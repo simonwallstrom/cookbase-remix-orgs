@@ -23,12 +23,12 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   return (
-    <html className="h-full min-h-full bg-gray-100" lang="en">
+    <html className="h-full min-h-full" lang="en">
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="flex min-h-full flex-col text-sm text-gray-900 selection:bg-yellow-200">
+      <body className="flex min-h-full flex-col text-sm text-gray-700 selection:bg-yellow-200">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

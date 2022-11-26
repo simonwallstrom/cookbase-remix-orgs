@@ -1,6 +1,6 @@
 import { json, type LoaderArgs } from '@remix-run/node'
 import { Outlet } from '@remix-run/react'
-import Header from '~/components/Header'
+import Sidebar from '~/components/Sidebar'
 import { requireAuth } from '~/utils/session.server'
 
 export async function loader({ request }: LoaderArgs) {
@@ -8,16 +8,13 @@ export async function loader({ request }: LoaderArgs) {
     user: await requireAuth(request),
   })
 }
-
 export default function AppLayout() {
   return (
-    <>
-      <Header />
-      <div className="px-4 pt-6 pb-36 md:px-6 md:pt-8">
-        <div className="mx-auto w-full max-w-2xl">
-          <Outlet />
-        </div>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1">
+        <Outlet />
       </div>
-    </>
+    </div>
   )
 }
